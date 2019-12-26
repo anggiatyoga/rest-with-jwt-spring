@@ -58,8 +58,9 @@ public class RegisterUserController {
 
         String password = body.get("password");
         String encodedPassword = new BCryptPasswordEncoder().encode(password);
-        String fullname = body.get("fullname");
-        registerUserRepository.save(new RegisterUser(username, encodedPassword, fullname));
+        String numberphone = body.get("numberphone");
+        String email = body.get("email");
+        registerUserRepository.save(new RegisterUser(username, encodedPassword, email, numberphone));
 
 //        throw new ValidationException(String.valueOf(HttpStatus.OK));
         return new ResponseEntity(HttpStatus.OK);
