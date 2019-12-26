@@ -32,13 +32,6 @@ public class BiodataController {
         return biodataRepository.findById(biodataId).orElse(new Biodata());
     }
 
-//    @PostMapping("/biodata/search")
-//    public List<Biodata> search(@RequestBody Map<String, String> body){
-//        String searchTerm = body.get("text");
-//        return biodataRepository.findDataFromAText(searchTerm, searchTerm, searchTerm, searchTerm, searchTerm,
-//                searchTerm, searchTerm, searchTerm, searchTerm);
-//    }
-
     //create
     @PostMapping("/biodata")
     public Biodata create(@RequestBody Map<String, String> body){
@@ -63,11 +56,11 @@ public class BiodataController {
         Biodata biodata = biodataRepository.findById(blogId).orElse(new Biodata());
         biodata.setNik(body.get("nik"));
         biodata.setNama(body.get("nama"));
-        biodata.setTempatTanggallahir(body.get("tempat_tanggallahir"));
+        biodata.setTempat_tanggallahir(body.get("tempat_tanggallahir"));
         biodata.setJenis_kelamin(body.get("jenis_kelamin"));
         biodata.setAlamat(body.get("alamat"));
         biodata.setAgama(body.get("agama"));
-        biodata.setStatusPerkawinan(body.get("status_perkawinan"));
+        biodata.setStatus_perkawinan(body.get("status_perkawinan"));
         biodata.setPekerjaan(body.get("pekerjaan"));
         biodata.setKewarganegaraan(body.get("kewarganegaraan"));
         return biodataRepository.save(biodata);

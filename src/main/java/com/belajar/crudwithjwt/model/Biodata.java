@@ -12,51 +12,40 @@ public class Biodata {
 
     private String nik;
     private String nama;
-    private String tempatTanggallahir;
+    private String tempat_tanggallahir;
     private String jenis_kelamin;
     private String alamat;
     private String agama;
-    private String statusPerkawinan;
+    private String status_perkawinan;
     private String pekerjaan;
     private String kewarganegaraan;
 
     public Biodata() {  }
 
-    public Biodata(String nik, String nama, String tempatTanggallahir, String jenis_kelamin, String alamat, String agama, String statusPerkawinan, String pekerjaan, String kewarganegaraan) {
+    public Biodata(String nik, String nama, String tempat_tanggallahir, String jenis_kelamin, String alamat, String agama, String status_perkawinan, String pekerjaan, String kewarganegaraan) {
         this.nik = nik;
         this.nama = nama;
-        this.tempatTanggallahir = tempatTanggallahir;
+        this.tempat_tanggallahir = tempat_tanggallahir;
         this.jenis_kelamin = jenis_kelamin;
         this.alamat = alamat;
         this.agama = agama;
-        this.statusPerkawinan = statusPerkawinan;
+        this.status_perkawinan = status_perkawinan;
         this.pekerjaan = pekerjaan;
         this.kewarganegaraan = kewarganegaraan;
     }
 
-    public Biodata(int id, String nik, String nama, String tempatTanggallahir, String jenis_kelamin, String alamat, String agama, String statusPerkawinan, String pekerjaan, String kewarganegaraan) {
+    public Biodata(int id, String nik, String nama, String tempat_tanggallahir, String jenis_kelamin, String alamat, String agama, String status_perkawinan, String pekerjaan, String kewarganegaraan) {
         this.id = id;
         this.nik = nik;
         this.nama = nama;
-        this.tempatTanggallahir = tempatTanggallahir;
+        this.tempat_tanggallahir = tempat_tanggallahir;
         this.jenis_kelamin = jenis_kelamin;
         this.alamat = alamat;
         this.agama = agama;
-        this.statusPerkawinan = statusPerkawinan;
+        this.status_perkawinan = status_perkawinan;
         this.pekerjaan = pekerjaan;
         this.kewarganegaraan = kewarganegaraan;
     }
-
-    //    public Biodata(String title, String content) {
-//        this.setTitle(title);
-//        this.setContent(content);
-//    }
-//
-//    public Biodata(int id, String title, String content) {
-//        this.setId(id);
-//        this.setTitle(title);
-//        this.setContent(content);
-//    }
 
     public int getId() {
         return id;
@@ -82,12 +71,12 @@ public class Biodata {
         this.nama = nama;
     }
 
-    public String getTempatTanggallahir() {
-        return tempatTanggallahir;
+    public String getTempat_tanggallahir() {
+        return tempat_tanggallahir;
     }
 
-    public void setTempatTanggallahir(String tempatTanggallahir) {
-        this.tempatTanggallahir = tempatTanggallahir;
+    public void setTempat_tanggallahir(String tempat_tanggallahir) {
+        this.tempat_tanggallahir = tempat_tanggallahir;
     }
 
     public String getJenis_kelamin() {
@@ -114,12 +103,12 @@ public class Biodata {
         this.agama = agama;
     }
 
-    public String getStatusPerkawinan() {
-        return statusPerkawinan;
+    public String getStatus_perkawinan() {
+        return status_perkawinan;
     }
 
-    public void setStatusPerkawinan(String statusPerkawinan) {
-        this.statusPerkawinan = statusPerkawinan;
+    public void setStatus_perkawinan(String status_perkawinan) {
+        this.status_perkawinan = status_perkawinan;
     }
 
     public String getPekerjaan() {
@@ -144,11 +133,11 @@ public class Biodata {
                 "id=" + id +
                 ", nik='" + nik + '\'' +
                 ", nama='" + nama + '\'' +
-                ", tempat_tanggallahir='" + tempatTanggallahir + '\'' +
+                ", tempat_tanggallahir='" + tempat_tanggallahir + '\'' +
                 ", jenis_kelamin='" + jenis_kelamin + '\'' +
                 ", alamat='" + alamat + '\'' +
                 ", agama='" + agama + '\'' +
-                ", status_perkawinan='" + statusPerkawinan + '\'' +
+                ", status_perkawinan='" + status_perkawinan + '\'' +
                 ", pekerjaan='" + pekerjaan + '\'' +
                 ", kewarganegaraan='" + kewarganegaraan + '\'' +
                 '}';

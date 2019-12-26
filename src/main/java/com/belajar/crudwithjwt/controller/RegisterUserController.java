@@ -29,23 +29,6 @@ public class RegisterUserController {
     }
 
 
-//    @PostMapping("/user")
-//    @ResponseBody
-//    public Boolean create(@RequestBody Map<String, String> body) throws NoSuchAlgorithmException {
-//        String username = body.get("username");
-//        if (userInfoRepository.existsByUsername(username)){
-//
-//            throw new ValidationException("Username already existed");
-//
-//        }
-//
-//        String password = body.get("password");
-//        String encodedPassword = new BCryptPasswordEncoder().encode(password);
-////        String hashedPassword = hashData.get_SHA_512_SecurePassword(password);
-//        String fullname = body.get("fullname");
-//        userInfoRepository.save(new UserInfo(username, encodedPassword, fullname));
-//        return true;
-//    }
 
     @PostMapping("/register")
 //    @ResponseBody
