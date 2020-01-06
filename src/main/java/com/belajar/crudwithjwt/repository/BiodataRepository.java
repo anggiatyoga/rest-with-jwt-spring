@@ -2,15 +2,21 @@ package com.belajar.crudwithjwt.repository;
 
 import com.belajar.crudwithjwt.model.Biodata;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public interface BiodataRepository extends JpaRepository<Biodata, Integer> {
+public interface BiodataRepository extends JpaRepository<Biodata, Long> {
 
-//    List<Biodata> findByTitleContainingOrContentContaining(String text, String textAgain);
+    List<Biodata> findByNama(String nama);
 
-//    List<Biodata> findDataFromAText(String nik, String nama, String tempatTanggallahir, String jenis_kelamin, String alamat,
-//                                    String agama, String statusPerkawinan, String pekerjaan, String kewarganegaraan);
+    @Override
+    Optional<Biodata> findById(Long integer);
+
+
 }

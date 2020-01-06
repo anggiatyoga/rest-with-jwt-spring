@@ -7,10 +7,8 @@ import javax.persistence.*;
 public class Biodata {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long nik;
 
-    private String nik;
     private String nama;
     private String tempat_tanggallahir;
     private String jenis_kelamin;
@@ -22,7 +20,7 @@ public class Biodata {
 
     public Biodata() {  }
 
-    public Biodata(String nik, String nama, String tempat_tanggallahir, String jenis_kelamin, String alamat, String agama, String status_perkawinan, String pekerjaan, String kewarganegaraan) {
+    public Biodata(long nik, String nama, String tempat_tanggallahir, String jenis_kelamin, String alamat, String agama, String status_perkawinan, String pekerjaan, String kewarganegaraan) {
         this.nik = nik;
         this.nama = nama;
         this.tempat_tanggallahir = tempat_tanggallahir;
@@ -34,32 +32,15 @@ public class Biodata {
         this.kewarganegaraan = kewarganegaraan;
     }
 
-    public Biodata(int id, String nik, String nama, String tempat_tanggallahir, String jenis_kelamin, String alamat, String agama, String status_perkawinan, String pekerjaan, String kewarganegaraan) {
-        this.id = id;
-        this.nik = nik;
+    public Biodata(String nama) {
         this.nama = nama;
-        this.tempat_tanggallahir = tempat_tanggallahir;
-        this.jenis_kelamin = jenis_kelamin;
-        this.alamat = alamat;
-        this.agama = agama;
-        this.status_perkawinan = status_perkawinan;
-        this.pekerjaan = pekerjaan;
-        this.kewarganegaraan = kewarganegaraan;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNik() {
+    public long getNik() {
         return nik;
     }
 
-    public void setNik(String nik) {
+    public void setNik(long nik) {
         this.nik = nik;
     }
 
@@ -129,9 +110,8 @@ public class Biodata {
 
     @Override
     public String toString() {
-        return "biodata{" +
-                "id=" + id +
-                ", nik='" + nik + '\'' +
+        return "biodata{"+
+                "nik=" + nik  +
                 ", nama='" + nama + '\'' +
                 ", tempat_tanggallahir='" + tempat_tanggallahir + '\'' +
                 ", jenis_kelamin='" + jenis_kelamin + '\'' +

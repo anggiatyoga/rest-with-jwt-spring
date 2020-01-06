@@ -1,8 +1,9 @@
 package com.belajar.crudwithjwt.controller;
 
 import com.belajar.crudwithjwt.config.JwtToken;
-import com.belajar.crudwithjwt.model.JwtRequest;
-import com.belajar.crudwithjwt.model.JwtResponse;
+import com.belajar.crudwithjwt.model.*;
+import com.belajar.crudwithjwt.repository.AuthenticateRepository;
+import com.belajar.crudwithjwt.repository.RegisterUserRepository;
 import com.belajar.crudwithjwt.service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,11 +27,32 @@ public class AuthController {
     @Autowired
     private JwtUserDetailsService jwtUserDetailsService;
 
+    final
+    private AuthenticateRepository authenticateRepository;
+
+    public AuthController(AuthenticateRepository authenticateRepository) {
+        this.authenticateRepository = authenticateRepository;
+    }
+
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtToken.generateToken(userDetails);
+        String dataUsername = authenticationRequest.getUsername();
+        String dataPassword = authenticationRequest.getPassword();
+
+        if (authenticateRepository.existsByUsername(dataUsername)){
+            //update
+            Authenticate authenticate = authenticateRepository.findByUsername(dataUsername).orElse(new Authenticate());
+            authenticate.setUsername(dataUsername);
+            authenticate.setToken(token);
+            authenticateRepository.save(authenticate);
+        } else {
+            //save
+            authenticateRepository.save(new Authenticate(dataUsername, token));
+        }
+
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
@@ -43,7 +65,5 @@ public class AuthController {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
     }
-
-
 
 }

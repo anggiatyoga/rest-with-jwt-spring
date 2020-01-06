@@ -3,9 +3,12 @@ package com.belajar.crudwithjwt.controller;
 import com.belajar.crudwithjwt.exceptions.ValidationException;
 import com.belajar.crudwithjwt.model.Biodata;
 import com.belajar.crudwithjwt.repository.BiodataRepository;
+import org.hibernate.annotations.SQLDelete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Map;
 
@@ -20,20 +23,27 @@ public class BiodataController {
     }
 
     //read all
-    @GetMapping("/biodata")
+    @GetMapping("/biodata/show")
     public List<Biodata> index(){
         return biodataRepository.findAll();
     }
 
-    //read by id
-    @GetMapping("/biodata/{id}")
-    public Biodata show(@PathVariable String id){
-        int biodataId = Integer.parseInt(id);
-        return biodataRepository.findById(biodataId).orElse(new Biodata());
+    //read (search by nik)
+    @GetMapping("/biodata/show/{nik}")
+    public Biodata show(@PathVariable long nik){
+        long biodataNik = nik;
+        return biodataRepository.findById(biodataNik).orElse(new Biodata());
+    }
+
+    //read (search by nama)
+    @PostMapping("/biodata/search")
+    public List<Biodata> search(@RequestBody Map<String, String> body) {
+        String searchTerm = body.get("search");
+        return biodataRepository.findByNama(searchTerm);
     }
 
     //create
-    @PostMapping("/biodata")
+    @PostMapping("/biodata/create")
     public Biodata create(@RequestBody Map<String, String> body){
         String nik = body.get("nik");
         String nama = body.get("nama");
@@ -44,17 +54,22 @@ public class BiodataController {
         String statusPerkawinan = body.get("status_perkawinan");
         String pekerjaan = body.get("pekerjaan");
         String kewarganegaraan = body.get("kewarganegaraan");
-        return biodataRepository.save(new Biodata(nik, nama, tempatTanggallahir, jenisKelamin, alamat, agama,
+        long nikNya = 0;
+        try {
+            nikNya = Long.parseLong(nik);
+        } catch (NumberFormatException e){
+            System.out.println("not a number");
+        }
+        return biodataRepository.save(new Biodata(nikNya, nama, tempatTanggallahir, jenisKelamin, alamat, agama,
                 statusPerkawinan, pekerjaan, kewarganegaraan));
     }
 
     //update
-    @PutMapping("/biodata/{id}")
-    public Biodata update(@PathVariable String id, @RequestBody Map<String, String> body){
-        int blogId = Integer.parseInt(id);
-        // getting blog
-        Biodata biodata = biodataRepository.findById(blogId).orElse(new Biodata());
-        biodata.setNik(body.get("nik"));
+    @PutMapping("/biodata/update/{nik}")
+    public Biodata update(@PathVariable(value = "nik") long nik, @RequestBody Map<String, String> body){
+        long dataNik = nik;
+        Biodata biodata = biodataRepository.findById(dataNik).orElse(new Biodata());
+        biodata.setNik(Long.parseLong(body.get("nik")));
         biodata.setNama(body.get("nama"));
         biodata.setTempat_tanggallahir(body.get("tempat_tanggallahir"));
         biodata.setJenis_kelamin(body.get("jenis_kelamin"));
@@ -67,9 +82,9 @@ public class BiodataController {
     }
 
     //delete
-    @DeleteMapping("/biodata/{id}")
-    public ResponseEntity<?> delete(@PathVariable(value = "id") String id) throws ValidationException {
-        Biodata biodata = biodataRepository.findById(Integer.valueOf(id)).orElseThrow(() -> new ValidationException(id));
+    @DeleteMapping("/biodata/delete/{nik}")
+    public ResponseEntity<?> delete(@PathVariable(value = "nik") long nik) throws ValidationException {
+        Biodata biodata = biodataRepository.findById(nik).orElseThrow(() -> new ValidationException("nik "+nik));
 
         biodataRepository.delete(biodata);
         return ResponseEntity.ok().build();
