@@ -18,7 +18,8 @@ public class Biodata {
     private String pekerjaan;
     private String kewarganegaraan;
 
-    public Biodata() {  }
+    public Biodata() {
+    }
 
     public Biodata(long nik, String nama, String tempat_tanggallahir, String jenis_kelamin, String alamat, String agama, String status_perkawinan, String pekerjaan, String kewarganegaraan) {
         this.nik = nik;

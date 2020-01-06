@@ -31,9 +31,10 @@ public class RegisterUserController {
     //read by query search
     //harus aktifin authorization/token (bearer)
     @PostMapping("/register/search")
-    public List<RegisterUser> search(@RequestBody Map<String, String> body) {
-        String searchTerm = body.get("search");
-        return registerUserRepository.findByUsernameOrNumberphoneOrEmail(searchTerm, searchTerm, searchTerm);
+    public RegisterUser search(@RequestBody Map<String, String> body) {
+        String searchTerm = body.get("nama");
+        return registerUserRepository.findByUsernameOrNumberphoneOrEmail(searchTerm, searchTerm, searchTerm)
+                .orElseThrow(() -> new ValidationException("username atau numberphone tidak tersedia"));
     }
 
     //read all

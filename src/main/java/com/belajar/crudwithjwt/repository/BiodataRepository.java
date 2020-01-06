@@ -13,10 +13,11 @@ import java.util.Optional;
 @Repository
 public interface BiodataRepository extends JpaRepository<Biodata, Long> {
 
-    List<Biodata> findByNama(String nama);
+    Boolean existsByNama(String nama);
 
     @Override
     Optional<Biodata> findById(Long integer);
 
+    Optional<Biodata> findByNama(String nama);
 
 }

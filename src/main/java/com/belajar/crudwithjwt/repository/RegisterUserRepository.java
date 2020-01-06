@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface RegisterUserRepository extends JpaRepository<RegisterUser, Integer>{
@@ -14,5 +15,5 @@ public interface RegisterUserRepository extends JpaRepository<RegisterUser, Inte
 
     RegisterUser findByUsername(String username);
 
-    List<RegisterUser> findByUsernameOrNumberphoneOrEmail(String textOne, String textTwo, String textThree);
+    Optional<RegisterUser> findByUsernameOrNumberphoneOrEmail(String textOne, String textTwo, String textThree);
 }
