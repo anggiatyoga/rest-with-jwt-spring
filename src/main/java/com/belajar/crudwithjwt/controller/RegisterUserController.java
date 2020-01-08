@@ -32,7 +32,7 @@ public class RegisterUserController {
     //harus aktifin authorization/token (bearer)
     @PostMapping("/register/search")
     public RegisterUser search(@RequestBody Map<String, String> body) {
-        String searchTerm = body.get("nama");
+        String searchTerm = body.get("cari");
         return registerUserRepository.findByUsernameOrNumberphoneOrEmail(searchTerm, searchTerm, searchTerm)
                 .orElseThrow(() -> new ValidationException("username atau numberphone tidak tersedia"));
     }

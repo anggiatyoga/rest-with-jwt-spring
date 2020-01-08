@@ -103,10 +103,11 @@ public class BiodataController {
             biodata.setPekerjaan(body.get("pekerjaan"));
             biodata.setKewarganegaraan(body.get("kewarganegaraan"));
             biodataRepository.save(biodata);
+//            throw new ValidationException("Berhasil di update");
+            throw new ValidationException("Berhasil diupdate");
         } else {
             throw new ValidationException("NIK "+nikNya+" tidak ditemukan");
         }
-        return ResponseEntity.ok().build();
     }
 
     //delete
