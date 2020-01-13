@@ -17,7 +17,7 @@ public interface MobilepulsaRepository extends JpaRepository<MobilepulsaModel, L
 //    @Override
 //    Optional<MobilepulsaModel> findById(Long aLong);
 
-    List<MobilepuldaDataModel> findGetAll();
+//    List<MobilepuldaDataModel> findGetAll();
 
     //    Optional<Biodata> findByNama(String nama);
 }

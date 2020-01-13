@@ -3,10 +3,10 @@ package com.belajar.crudwithjwt.mobilepulsa;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-//@Entity
+@Entity
 public class MobilepulsaModel {
 
-//    @Id
+    @Id
     private long pulsa_price;
 
     private String pulsa_code;
