@@ -4,6 +4,7 @@ import com.belajar.crudwithjwt.exceptions.ValidationException;
 import com.belajar.crudwithjwt.model.Biodata;
 import com.belajar.crudwithjwt.model.RegisterUser;
 import com.belajar.crudwithjwt.repository.RegisterUserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
