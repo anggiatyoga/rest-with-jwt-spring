@@ -55,32 +55,26 @@ public class RegisterUserController {
         String password = body.get("password");
         String encodedPassword = new BCryptPasswordEncoder().encode(password);
 
-        List<String> userData = null;
-        try {
-            userData = new ArrayList<String>();
-            userData.add(username);
-            userData.add(numberphone);
-            userData.add(email);
-            userData.add(password);
+        RegisterUser registerUser = new RegisterUser();
+        registerUser.setUsername(username);
+        registerUser.setNumberphone(numberphone);
+        registerUser.setEmail(email);
+        registerUser.setPassword(password);
 
-            String json = new Gson().toJson(userData);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         if (registerUserRepository.existsByUsername(username)){
 
 //            throw new ValidationException("Username already existed");
-            throw new ValidationException(""+username+" telah digunakan", "coba username lain", userData);
+            throw new ValidationException(""+username+" telah digunakan", "coba username lain", registerUserRepository.findByUsername(username));
         } else if (registerUserRepository.existsByNumberphone(numberphone)) {
 //            throw new ValidationException("Numberphone already existed");
-            throw new ValidationException(""+numberphone+" telah digunakan", "coba numberphone lain", userData);
+            throw new ValidationException(""+numberphone+" telah digunakan", "coba numberphone lain", registerUserRepository.findByUsername(username));
         } else if (registerUserRepository.existsByEmail(email)) {
 //            throw new ValidationException("Email already exist");
-            throw new ValidationException(""+email+" telah digunakan", "coba email lain", userData);
+            throw new ValidationException(""+email+" telah digunakan", "coba email lain", registerUserRepository.findByUsername(username));
         } else {
             registerUserRepository.save(new RegisterUser(username, encodedPassword, email, numberphone));
-            throw new ValidationException("Berhasil dibuat", "Ok", userData);
+            throw new ValidationException("Berhasil dibuat", "Ok", registerUserRepository.findByUsername(username));
         }
 
     }

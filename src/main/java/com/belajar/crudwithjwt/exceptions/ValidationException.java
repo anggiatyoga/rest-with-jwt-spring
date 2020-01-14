@@ -2,7 +2,6 @@ package com.belajar.crudwithjwt.exceptions;
 
 import com.belajar.crudwithjwt.model.RegisterUser;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ValidationException extends RuntimeException {
@@ -11,24 +10,24 @@ public class ValidationException extends RuntimeException {
     private String msg;
     private String status;
 //    private String data;
-    private ArrayList<RegisterUser> dataList;
+    private RegisterUser dataList;
     private List<String> userData;
 
     public ValidationException(String msg) {
         this.msg = msg;
     }
 
-    public ValidationException(String msg, String status, ArrayList<RegisterUser> dataList) {
+    public ValidationException(String msg, String status, RegisterUser dataList) {
         this.msg = msg;
         this.status = status;
         this.dataList = dataList;
     }
 
-    public ValidationException(String msg, String status, List<String> userData) {
-        this.msg = msg;
-        this.status = status;
-        this.userData = userData;
-    }
+//    public ValidationException(String msg, String status, List<String> userData) {
+//        this.msg = msg;
+//        this.status = status;
+//        this.userData = userData;
+//    }
 
 
     public String getMsg() {
@@ -47,11 +46,20 @@ public class ValidationException extends RuntimeException {
         this.status = status;
     }
 
-    public ArrayList<RegisterUser> getDataList() {
+    public RegisterUser getDataList() {
         return dataList;
     }
 
-    public void setDataList(ArrayList<RegisterUser> dataList) {
+    public void setDataList(RegisterUser dataList) {
         this.dataList = dataList;
     }
+
+    public List<String> getUserData() {
+        return userData;
+    }
+
+    public void setUserData(List<String> userData) {
+        this.userData = userData;
+    }
+
 }
