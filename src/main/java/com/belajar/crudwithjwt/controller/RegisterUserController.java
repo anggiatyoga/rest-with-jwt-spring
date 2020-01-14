@@ -51,24 +51,24 @@ public class RegisterUserController {
         String username = body.get("username");
         String numberphone = body.get("numberphone");
         String email = body.get("email");
-        if (registerUserRepository.existsByUsername(username)){
-
-//            throw new ValidationException("Username already existed");
-            throw new ValidationException("msg : "+username+" tersedia", "status : "+username+"", "data : "+username+"");
-        } else if (registerUserRepository.existsByNumberphone(numberphone)) {
-//            throw new ValidationException("Numberphone already existed");
-            throw new ValidationException("msg : "+numberphone+" tersedia", "status : "+username+"", "data : "+username+"");
-        } else if (registerUserRepository.existsByEmail(email)) {
-//            throw new ValidationException("Email already exist");
-            throw new ValidationException("msg : "+email+" tersedia", "status : "+username+"", "data : "+username+"");
-        }
-
         String password = body.get("password");
         String encodedPassword = new BCryptPasswordEncoder().encode(password);
 
-        registerUserRepository.save(new RegisterUser(username, encodedPassword, email, numberphone));
+        if (registerUserRepository.existsByUsername(username)){
 
-        return new ResponseEntity(HttpStatus.OK);
+//            throw new ValidationException("Username already existed");
+            throw new ValidationException(""+username+" telah digunakan", "coba username lain", ""+username+"");
+        } else if (registerUserRepository.existsByNumberphone(numberphone)) {
+//            throw new ValidationException("Numberphone already existed");
+            throw new ValidationException(""+numberphone+" telah digunakan", "coba numberphone lain", ""+numberphone+"");
+        } else if (registerUserRepository.existsByEmail(email)) {
+//            throw new ValidationException("Email already exist");
+            throw new ValidationException(""+email+" telah digunakan", "coba email lain", ""+email+"");
+        } else {
+            registerUserRepository.save(new RegisterUser(username, encodedPassword, email, numberphone));
+            throw new ValidationException("Berhasil dibuat", "Ok", ""+username+"");
+        }
+
     }
 
 }
