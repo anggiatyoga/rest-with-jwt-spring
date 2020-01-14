@@ -2,19 +2,17 @@ package com.belajar.crudwithjwt.exceptions;
 
 import com.belajar.crudwithjwt.model.RegisterUser;
 
-import java.util.ArrayList;
-
 public class ValidationResponse {
-    private String error;
+    private String status;
     private String message;
-    private String data;
+//    private String data;
     private RegisterUser dataList;
 
 //    public ValidationResponse() {
 //    }
 
-    public ValidationResponse(String error, String message, RegisterUser dataList) {
-        this.error = error;
+    public ValidationResponse(String status, String message, RegisterUser dataList) {
+        this.status = status;
         this.message = message;
         this.dataList = dataList;
     }
@@ -25,12 +23,12 @@ public class ValidationResponse {
 //        this.data = data;
 //    }
 
-    public String getError() {
-        return error;
+    public String getStatus() {
+        return status;
     }
 
-    public void setError(String error) {
-        this.error = error;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getMessage() {
@@ -41,13 +39,13 @@ public class ValidationResponse {
         this.message = message;
     }
 
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
+//    public String getData() {
+//        return data;
+//    }
+//
+//    public void setData(String data) {
+//        this.data = data;
+//    }
 
     //    public ValidationResponse() {
 //    }

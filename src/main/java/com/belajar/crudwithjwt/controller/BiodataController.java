@@ -73,6 +73,7 @@ public class BiodataController {
         if (biodataRepository.existsById(nikNya)) {
 //            throw new ValidationException("" + username + " telah digunakan", "NIK "+nikNya+" telah digunakan", userData);
         } else {
+
             biodataRepository.save(new Biodata(nikNya, nama, tempatTanggallahir, jenisKelamin, alamat, agama,
                     statusPerkawinan, pekerjaan, kewarganegaraan));
         }
