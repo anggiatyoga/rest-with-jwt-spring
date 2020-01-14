@@ -1,20 +1,33 @@
 package com.belajar.crudwithjwt.exceptions;
 
+import com.belajar.crudwithjwt.model.RegisterUser;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class ValidationException extends RuntimeException {
 
     private static final long serialVersionUID = -7806029002430564887L;
     private String msg;
     private String status;
-    private String data;
+//    private String data;
+    private ArrayList<RegisterUser> dataList;
+    private List<String> userData;
 
     public ValidationException(String msg) {
         this.msg = msg;
     }
 
-    public ValidationException(String msg, String status, String data) {
+    public ValidationException(String msg, String status, ArrayList<RegisterUser> dataList) {
         this.msg = msg;
         this.status = status;
-        this.data = data;
+        this.dataList = dataList;
+    }
+
+    public ValidationException(String msg, String status, List<String> userData) {
+        this.msg = msg;
+        this.status = status;
+        this.userData = userData;
     }
 
 
@@ -34,11 +47,11 @@ public class ValidationException extends RuntimeException {
         this.status = status;
     }
 
-    public String getData() {
-        return data;
+    public ArrayList<RegisterUser> getDataList() {
+        return dataList;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setDataList(ArrayList<RegisterUser> dataList) {
+        this.dataList = dataList;
     }
 }

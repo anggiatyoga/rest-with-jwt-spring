@@ -3,7 +3,6 @@ package com.belajar.crudwithjwt.controller;
 import com.belajar.crudwithjwt.exceptions.ValidationException;
 import com.belajar.crudwithjwt.model.Biodata;
 import com.belajar.crudwithjwt.repository.BiodataRepository;
-import org.hibernate.annotations.SQLDelete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
@@ -12,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Map;
 
@@ -72,7 +70,7 @@ public class BiodataController {
         }
 
         if (biodataRepository.existsById(nikNya)) {
-            throw new ValidationException("NIK "+nikNya+" telah digunakan");
+//            throw new ValidationException("" + username + " telah digunakan", "NIK "+nikNya+" telah digunakan", userData);
         } else {
             biodataRepository.save(new Biodata(nikNya, nama, tempatTanggallahir, jenisKelamin, alamat, agama,
                     statusPerkawinan, pekerjaan, kewarganegaraan));

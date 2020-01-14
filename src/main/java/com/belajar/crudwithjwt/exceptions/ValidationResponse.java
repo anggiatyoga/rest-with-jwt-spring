@@ -1,11 +1,15 @@
 package com.belajar.crudwithjwt.exceptions;
 
+import com.belajar.crudwithjwt.model.RegisterUser;
+
+import java.util.ArrayList;
+
 public class ValidationResponse {
     private String error;
     private String message;
     private String data;
 
-    public ValidationResponse() {
+    public ValidationResponse(String msg, String status, ArrayList<RegisterUser> dataList) {
     }
 
     public ValidationResponse(String error, String message, String data) {

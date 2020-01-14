@@ -4,7 +4,6 @@ import com.belajar.crudwithjwt.config.JwtToken;
 import com.belajar.crudwithjwt.exceptions.ValidationException;
 import com.belajar.crudwithjwt.model.*;
 import com.belajar.crudwithjwt.repository.AuthenticateRepository;
-import com.belajar.crudwithjwt.repository.RegisterUserRepository;
 import com.belajar.crudwithjwt.service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

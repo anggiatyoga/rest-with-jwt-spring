@@ -1,11 +1,9 @@
 package com.belajar.crudwithjwt.controller;
 
 import com.belajar.crudwithjwt.exceptions.ValidationException;
-import com.belajar.crudwithjwt.model.Biodata;
 import com.belajar.crudwithjwt.model.RegisterUser;
 import com.belajar.crudwithjwt.repository.RegisterUserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import com.google.gson.Gson;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +23,8 @@ public class RegisterUserController {
 
     final
     private RegisterUserRepository registerUserRepository;
+
+    private List<RegisterUser> userList = new ArrayList<>();
 
     public RegisterUserController(RegisterUserRepository registerUserRepository) {
         this.registerUserRepository = registerUserRepository;
@@ -54,19 +55,32 @@ public class RegisterUserController {
         String password = body.get("password");
         String encodedPassword = new BCryptPasswordEncoder().encode(password);
 
+        List<String> userData = null;
+        try {
+            userData = new ArrayList<String>();
+            userData.add(username);
+            userData.add(numberphone);
+            userData.add(email);
+            userData.add(password);
+
+            String json = new Gson().toJson(userData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         if (registerUserRepository.existsByUsername(username)){
 
 //            throw new ValidationException("Username already existed");
-            throw new ValidationException(""+username+" telah digunakan", "coba username lain", ""+username+"");
+            throw new ValidationException(""+username+" telah digunakan", "coba username lain", userData);
         } else if (registerUserRepository.existsByNumberphone(numberphone)) {
 //            throw new ValidationException("Numberphone already existed");
-            throw new ValidationException(""+numberphone+" telah digunakan", "coba numberphone lain", ""+numberphone+"");
+            throw new ValidationException(""+numberphone+" telah digunakan", "coba numberphone lain", userData);
         } else if (registerUserRepository.existsByEmail(email)) {
 //            throw new ValidationException("Email already exist");
-            throw new ValidationException(""+email+" telah digunakan", "coba email lain", ""+email+"");
+            throw new ValidationException(""+email+" telah digunakan", "coba email lain", userData);
         } else {
             registerUserRepository.save(new RegisterUser(username, encodedPassword, email, numberphone));
-            throw new ValidationException("Berhasil dibuat", "Ok", ""+username+"");
+            throw new ValidationException("Berhasil dibuat", "Ok", userData);
         }
 
     }
