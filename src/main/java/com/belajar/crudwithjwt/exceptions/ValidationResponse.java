@@ -8,15 +8,22 @@ public class ValidationResponse {
     private String error;
     private String message;
     private String data;
+    private RegisterUser dataList;
 
-    public ValidationResponse(String msg, String status, RegisterUser dataList) {
-    }
+//    public ValidationResponse() {
+//    }
 
-    public ValidationResponse(String error, String message, String data) {
+    public ValidationResponse(String error, String message, RegisterUser dataList) {
         this.error = error;
         this.message = message;
-        this.data = data;
+        this.dataList = dataList;
     }
+
+//    public ValidationResponse(String error, String message, String data) {
+//        this.error = error;
+//        this.message = message;
+//        this.data = data;
+//    }
 
     public String getError() {
         return error;

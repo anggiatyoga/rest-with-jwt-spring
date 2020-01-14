@@ -31,7 +31,6 @@ public class RegisterUserController {
     }
 
     //read by query search
-    //harus aktifin authorization/token (bearer)
     @PostMapping("/register/search")
     public RegisterUser search(@RequestBody Map<String, String> body) {
         String searchTerm = body.get("cari");
@@ -40,7 +39,6 @@ public class RegisterUserController {
     }
 
     //read all
-    //harus aktifin authorization/token (bearer)
     @GetMapping("/register/show")
     public List<RegisterUser> index() {
         return registerUserRepository.findAll();
