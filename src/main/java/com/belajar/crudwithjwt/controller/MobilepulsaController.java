@@ -57,7 +57,7 @@ public class MobilepulsaController {
 
             String uname = "087773906676";
             String pass = "4645e149335884d2";
-            String sign = uname + pass + "pl";
+            String sign = uname + pass + "bl";
 
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(sign.getBytes());
@@ -65,7 +65,7 @@ public class MobilepulsaController {
             String myHash = DatatypeConverter.printHexBinary(digest).toLowerCase();
 
             String data = "{\n" +
-                    "  \"commands\" : \"pricelist\",\n" +
+                    "  \"commands\" : \"balance\",\n" +
                     "  \"username\" : \""+ uname + "\",\n" +
                     "  \"sign\"     : \""+ myHash + "\"\n" +
                     "}";
