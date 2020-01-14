@@ -9,7 +9,7 @@ public class ValidationResponse {
     private String message;
     private String data;
 
-    public ValidationResponse(String msg, String status, ArrayList<RegisterUser> dataList) {
+    public ValidationResponse(String msg, String status, RegisterUser dataList) {
     }
 
     public ValidationResponse(String error, String message, String data) {

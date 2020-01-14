@@ -47,7 +47,8 @@ public class BiodataController {
     @PostMapping("/biodata/search/nama")
     public Biodata search(@RequestBody Map<String, String> body) {
         String searchName = body.get("nama");
-        return biodataRepository.findByNama(searchName).orElseThrow(() -> new ValidationException("nama "+searchName+" tidak ditemukan"));
+        return biodataRepository.findByNama(searchName).orElseThrow(() ->
+                new ValidationException(""+searchName+" tidak ditemukan", "coba cari lagi", "data"));
     }
 
 

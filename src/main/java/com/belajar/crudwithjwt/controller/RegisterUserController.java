@@ -24,7 +24,7 @@ public class RegisterUserController {
     final
     private RegisterUserRepository registerUserRepository;
 
-    private List<RegisterUser> userList = new ArrayList<>();
+//    private List<RegisterUser> userList = new ArrayList<>();
 
     public RegisterUserController(RegisterUserRepository registerUserRepository) {
         this.registerUserRepository = registerUserRepository;
@@ -36,7 +36,7 @@ public class RegisterUserController {
     public RegisterUser search(@RequestBody Map<String, String> body) {
         String searchTerm = body.get("cari");
         return registerUserRepository.findByUsernameOrNumberphoneOrEmail(searchTerm, searchTerm, searchTerm)
-                .orElseThrow(() -> new ValidationException("username atau numberphone tidak tersedia"));
+                .orElseThrow(() -> new ValidationException("username atau numberphone tidak tersediaa"));
     }
 
     //read all
