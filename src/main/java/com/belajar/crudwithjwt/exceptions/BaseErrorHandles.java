@@ -22,7 +22,7 @@ public class BaseErrorHandles {
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ValidationResponse handleValidationException(ValidationException ve) {
-        ValidationResponse response = new ValidationResponse(ve.getMsg());
+        ValidationResponse response = new ValidationResponse(ve.getMsg(), ve.getStatus(), ve.getData());
         return response;
     }
 

@@ -53,11 +53,14 @@ public class RegisterUserController {
         String email = body.get("email");
         if (registerUserRepository.existsByUsername(username)){
 
-            throw new ValidationException("Username already existed");
+//            throw new ValidationException("Username already existed");
+            throw new ValidationException("msg : "+username+" tersedia", "status : "+username+"", "data : "+username+"");
         } else if (registerUserRepository.existsByNumberphone(numberphone)) {
-            throw new ValidationException("Numberphone already existed");
+//            throw new ValidationException("Numberphone already existed");
+            throw new ValidationException("msg : "+numberphone+" tersedia", "status : "+username+"", "data : "+username+"");
         } else if (registerUserRepository.existsByEmail(email)) {
-            throw new ValidationException("Email already exist");
+//            throw new ValidationException("Email already exist");
+            throw new ValidationException("msg : "+email+" tersedia", "status : "+username+"", "data : "+username+"");
         }
 
         String password = body.get("password");

@@ -46,7 +46,6 @@ public class BiodataController {
     }
 
     //read (search by nama)
-    //Status response selalu ok -> buat kondisi bila db tidak tersedia
     @PostMapping("/biodata/search/nama")
     public Biodata search(@RequestBody Map<String, String> body) {
         String searchName = body.get("nama");
