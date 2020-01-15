@@ -45,7 +45,6 @@ public class RegisterUserController {
                     put("username",registerUserList.get().getUsername());
                     put("numberphone", registerUserList.get().getNumberphone());
                     put("email", registerUserList.get().getEmail());
-                    put("password", registerUserList.get().getPassword());
                 }
             });
             map.put("status", status);
@@ -134,7 +133,6 @@ public class RegisterUserController {
                 put("username",username);
                 put("numberphone",numberphone);
                 put("email",email);
-                put("password",password);
             }
         });
         map.put("status", status);

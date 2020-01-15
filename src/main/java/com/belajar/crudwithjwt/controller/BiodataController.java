@@ -26,12 +26,6 @@ public class BiodataController {
         this.biodataRepository = biodataRepository;
     }
 
-//    //read all
-//    @GetMapping("/biodata/show")
-//    public List<Biodata> index(){
-//        return biodataRepository.findAll();
-//    }
-
     //read (search by nik)
     @PostMapping("/biodata/search/nik")
     public Map<String, Object> show(@RequestBody Map<String, String> body) {
@@ -130,11 +124,11 @@ public class BiodataController {
 
         String nik = body.get("nik");
         String nama = body.get("nama");
-        String tempatTanggallahir = body.get("tempat_tanggallahir");
-        String jenisKelamin = body.get("jenis_kelamin");
+        String tempatTanggallahir = body.get("tempatTanggallahir");
+        String jenisKelamin = body.get("jenisKelamin");
         String alamat = body.get("alamat");
         String agama = body.get("agama");
-        String statusPerkawinan = body.get("status_perkawinan");
+        String statusPerkawinan = body.get("statusPerkawinan");
         String pekerjaan = body.get("pekerjaan");
         String kewarganegaraan = body.get("kewarganegaraan");
         long nikNya = 0;
@@ -195,11 +189,11 @@ public class BiodataController {
         if (biodataRepository.existsById(nikNya)) {
             Biodata biodata = biodataRepository.findById(nikNya).orElse(new Biodata());
             biodata.setNama(body.get("nama"));
-            biodata.setTempat_tanggallahir(body.get("tempat_tanggallahir"));
-            biodata.setJenis_kelamin(body.get("jenis_kelamin"));
+            biodata.setTempat_tanggallahir(body.get("tempatTanggallahir"));
+            biodata.setJenis_kelamin(body.get("jenisKelamin"));
             biodata.setAlamat(body.get("alamat"));
             biodata.setAgama(body.get("agama"));
-            biodata.setStatus_perkawinan(body.get("status_perkawinan"));
+            biodata.setStatus_perkawinan(body.get("statusPerkawinan"));
             biodata.setPekerjaan(body.get("pekerjaan"));
             biodata.setKewarganegaraan(body.get("kewarganegaraan"));
             biodataRepository.save(biodata);
@@ -208,11 +202,11 @@ public class BiodataController {
                 {
                     put("nik", String.valueOf(finalNikNya));
                     put("nama",body.get("nama"));
-                    put("tempatTanggallahir",body.get("tempat_tanggallahir"));
-                    put("jenisKelamin",body.get("jenis_kelamin"));
+                    put("tempatTanggallahir",body.get("tempatTanggallahir"));
+                    put("jenisKelamin",body.get("jenisKelamin"));
                     put("alamat",body.get("alamat"));
                     put("agama",body.get("agama"));
-                    put("statusPerkawinan",body.get("status_perkawinan"));
+                    put("statusPerkawinan",body.get("statusPerkawinan"));
                     put("pekerjaan",body.get("pekerjaan"));
                     put("kewarganegaraan", body.get("kewarganegaraan"));
                 }
@@ -267,7 +261,7 @@ public class BiodataController {
                     int finalI = i;
                     put(i, new HashMap<String, Object>(){
                         {
-                            for (int j=0; j<8; j++){
+                            for (int j=0; j<9; j++){
                                 if (j == 0){
                                     put("nik", biodataList.get(finalI).getNik());
                                 } else if (j == 1) {
