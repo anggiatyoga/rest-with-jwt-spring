@@ -32,7 +32,7 @@ import java.util.Map;
 
 @RestController
 public class MobilepulsaController {
-    //Check Balance
+
 
 
     @Autowired
@@ -42,13 +42,9 @@ public class MobilepulsaController {
         this.mobilepulsaRepository = mobilepulsaRepository;
     }
 
-    //send
+
     @PostMapping("/payment/checkbalance")
-//    public ResponseEntity send(@RequestBody Map<String, String> body) {
-//    public MobilepulsaModel send(@RequestBody Map<String, String> body) {
     public String checkbalance(@RequestBody Map<String, String> body) {
-//    public JSONObject send(@RequestBody Map<String, String> body) {
-//    public Map<String, Object> send(@RequestBody Map<String, String> body) {
         String type = body.get("type");
         String operator = body.get("operator");
         String outputJson = "";
@@ -79,7 +75,6 @@ public class MobilepulsaController {
 
             OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream(), "UTF-8");
             out.write(data);
-//            out.flush();
 
             out.close();
 
@@ -90,17 +85,17 @@ public class MobilepulsaController {
         } catch (Exception e) {
             e.printStackTrace();
     }
-//        throw new ValidationException(outputJson);
-//        return new JSONObject("{'aa':'bb'}");
                 return outputJson;
     }
 
     @PostMapping("/payment/pricelist")
     public String pricelist(@RequestBody Map<String, String> body) {
+        String type = body.get("type");
+        String operator = body.get("operator");
         String outputJson = "";
 
         try{
-            String url = "https://testprepaid.mobilepulsa.net/v1/legacy/index";
+            String url = "https://testprepaid.mobilepulsa.net/v1/legacy/index/"+type+"/"+operator;
 
             URL obj = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
@@ -138,8 +133,57 @@ public class MobilepulsaController {
         return outputJson;
     }
 
+    @PostMapping("/payment/checkgameid")
+    public String checkgameid(@RequestBody Map<String, String> body) {
+        String gameCode = body.get("game_code");
+        String outputJson = "";
+
+        try{
+            String url = "https://testprepaid.mobilepulsa.net/v1/player-detail";
+
+            URL obj = new URL(url);
+            HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setDoOutput(true);
+            conn.setRequestMethod("POST");
+
+            String uname = "087773906676";
+            String pass = "4645e149335884d2";
+            String apikey = "4645e149335884d2";
+            String sign = uname + apikey + gameCode;
+
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(sign.getBytes());
+            byte[] digest = md.digest();
+            String myHash = DatatypeConverter.printHexBinary(digest).toLowerCase();
+
+            String data = "{\n" +
+                    "  \"commands\" : \"check-game-id\",\n" +
+                    "  \"username\" : \""+ uname + "\",\n" +
+                    "  \"game_code\" : \""+ gameCode + "\",\n" +
+                    "  \"hp\" : \"156378300|8483\",\n" +
+                    "  \"sign\"     : \""+ myHash + "\"\n" +
+                    "}";
+
+            OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream(), "UTF-8");
+            out.write(data);
+
+            out.close();
+
+            outputJson = convertStreamToString(conn.getInputStream());
+
+            System.out.print(outputJson);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return outputJson;
+    }
+
     @PostMapping("payment/topup")
     public String topup(@RequestBody Map<String, String> body) {
+        String hpCustomer = body.get("hp");
+        String pulsaCode = body.get("pulsa_code");
         String outputJson = "";
 
         try {
@@ -168,8 +212,8 @@ public class MobilepulsaController {
                     "  \"commands\"   : \"topup\",\n" +
                     "  \"username\"   : \"" + uname + "\",\n" +
                     "  \"ref_id\"     : \"" + refId + "\",\n" +
-                    "  \"hp\"         : \"0817777215\",\n" +
-                    "  \"pulsa_code\" : \"xld25000\",\n" +
+                    "  \"hp\"     : \"" + hpCustomer + "\",\n" +
+                    "  \"pulsa_code\" : \""+ pulsaCode +"\",\n" +
                     "  \"sign\"       : \"" + myHash + "\"\n" +
                     "}";
 
