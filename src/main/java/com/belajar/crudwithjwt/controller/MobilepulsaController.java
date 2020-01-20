@@ -230,6 +230,51 @@ public class MobilepulsaController {
         return outputJson;
     }
 
+    @PostMapping("payment/checkstatus")
+    public String checkstatus(@RequestBody Map<String, String> body) {
+        String refId = body.get("ref_id");
+        String outputJson = "";
+
+        try {
+
+            String url = "https://testprepaid.mobilepulsa.net/v1/legacy/index";
+
+            URL obj = new URL(url);
+            HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setDoOutput(true);
+            conn.setRequestMethod("POST");
+
+            String uname = "087773906676";
+            String apiKey = "4645e149335884d2";
+            String sign = uname + apiKey + refId;
+
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(sign.getBytes());
+            byte[] digest = md.digest();
+            String myHash = DatatypeConverter.printHexBinary(digest).toLowerCase();
+
+            String data =  "{\n" +
+                    "  \"commands\"   : \"inquiry\",\n" +
+                    "  \"username\"   : \"" + uname + "\",\n" +
+                    "  \"ref_id\"     : \"" + refId + "\",\n" +
+                    "  \"sign\"       : \"" + myHash + "\"\n" +
+                    "}";
+
+            OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
+            out.write(data);
+
+            out.close();
+            outputJson = convertStreamToString(conn.getInputStream());
+            System.out.print(outputJson);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return outputJson;
+
+    }
+
 
     @GetMapping("/test/hello")
     public Map<String, Object> sayHello() {
