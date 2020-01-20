@@ -10,11 +10,16 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
+//@SpringBootApplication
+//@ComponentScan({"com.delivery.request"})
+//@EntityScan("com.delivery.domain")
+//@EnableJpaRepositories("com.delivery.repository")
+
 
 @Component
 public class JwtUserDetailsService implements UserDetailsService{
 
-    @Autowired
+    @Autowired(required = true)
     private RegisterUserRepository registerUserRepository;
 
 

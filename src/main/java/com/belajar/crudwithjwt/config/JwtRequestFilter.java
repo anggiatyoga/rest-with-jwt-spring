@@ -1,5 +1,6 @@
 package com.belajar.crudwithjwt.config;
 
+import com.belajar.crudwithjwt.exceptions.ValidationException;
 import com.belajar.crudwithjwt.service.JwtUserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             }catch (IllegalArgumentException e) {
                 System.out.println("Unable to get JWT Token");
             }catch (ExpiredJwtException e) {
-                System.out.println("JWT Token has ex[ired");
+                System.out.println("JWT Token has expired");
             }
         } else {
             logger.warn("JWT Token does not begin with Bearer String");

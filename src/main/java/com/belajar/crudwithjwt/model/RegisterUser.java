@@ -12,9 +12,17 @@ public class RegisterUser {
 
     private String username;
     private String password;
-    private String fullname;
+    private String email;
+    private String numberphone;
 
     public RegisterUser() {
+    }
+
+    public RegisterUser(String username, String password, String email, String numberphone) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.numberphone = numberphone;
     }
 
     public int getId() {
@@ -41,19 +49,19 @@ public class RegisterUser {
         this.password = password;
     }
 
-    public RegisterUser(String username, String password, String fullname) {
-        this.username = username;
-        this.password = password;
-        this.fullname = fullname;
+    public String getEmail() {
+        return email;
     }
 
-    public String getFullname() {
-        return fullname;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public String getNumberphone() {
+        return numberphone;
     }
 
-
+    public void setNumberphone(String numberphone) {
+        this.numberphone = numberphone;
+    }
 }
