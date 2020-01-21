@@ -43,7 +43,7 @@ public class MobilepulsaController {
     }
 
 
-    @PostMapping("/payment/checkbalance")
+    @PostMapping("/ppob/checkbalance")
     public String checkbalance(@RequestBody Map<String, String> body) {
         String type = body.get("type");
         String operator = body.get("operator");
@@ -88,7 +88,7 @@ public class MobilepulsaController {
                 return outputJson;
     }
 
-    @PostMapping("/payment/pricelist")
+    @PostMapping("/ppob/pricelist")
     public String pricelist(@RequestBody Map<String, String> body) {
         String type = body.get("type");
         String operator = body.get("operator");
@@ -133,7 +133,7 @@ public class MobilepulsaController {
         return outputJson;
     }
 
-    @PostMapping("/payment/checkgameid")
+    @PostMapping("/ppob/checkgameid")
     public String checkgameid(@RequestBody Map<String, String> body) {
         String gameCode = body.get("game_code");
         String outputJson = "";
@@ -180,7 +180,7 @@ public class MobilepulsaController {
         return outputJson;
     }
 
-    @PostMapping("payment/topup")
+    @PostMapping("ppob/topup")
     public String topup(@RequestBody Map<String, String> body) {
         String hpCustomer = body.get("hp");
         String pulsaCode = body.get("pulsa_code");
@@ -230,7 +230,7 @@ public class MobilepulsaController {
         return outputJson;
     }
 
-    @PostMapping("payment/checkstatus")
+    @PostMapping("ppob/checkstatus")
     public String checkstatus(@RequestBody Map<String, String> body) {
         String refId = body.get("ref_id");
         String outputJson = "";
@@ -273,6 +273,51 @@ public class MobilepulsaController {
         }
         return outputJson;
 
+    }
+
+    @PostMapping("ppob/payment")
+    public String payment(@RequestBody Map<String, String> body) {
+        String trId = body.get("tr_id");
+        String uname = "087773906676";
+        String apiKey = "4645e149335884d2";
+        String outputJson = "";
+
+        try {
+
+            String url = "https://testpostpaid.mobilepulsa.net/api/v1/bill/check";
+
+            URL obj = new URL(url);
+            HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setDoOutput(true);
+            conn.setRequestMethod("POST");
+
+
+            String sign = uname + apiKey + trId;
+
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(sign.getBytes());
+            byte[] digest = md.digest();
+            String myHash = DatatypeConverter.printHexBinary(digest).toLowerCase();
+
+            String data =  "{\n" +
+                    "  \"commands\"   : \"pay-pasca\",\n" +
+                    "  \"username\"   : \"" + uname + "\",\n" +
+                    "  \"tr_id\"     : \"" + trId + "\",\n" +
+                    "  \"sign\"       : \"" + myHash + "\"\n" +
+                    "}";
+
+            OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
+            out.write(data);
+
+            out.close();
+            outputJson = convertStreamToString(conn.getInputStream());
+            System.out.print(outputJson);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return outputJson;
     }
 
 
