@@ -1,10 +1,10 @@
-package com.belajar.crudwithjwt.mobilepulsa;
+package com.belajar.crudwithjwt.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class MobilepulsaModel {
+public class Mobilepulsa {
 
     @Id
     private long pulsa_price;
@@ -16,10 +16,10 @@ public class MobilepulsaModel {
     private String masaaktif;
     private String status;
 
-    public MobilepulsaModel() {
+    public Mobilepulsa() {
     }
 
-    public MobilepulsaModel(long pulsa_price, String pulsa_code, String pulsa_op, String pulsa_nominal, String pulsa_type, String masaaktif, String status) {
+    public Mobilepulsa(long pulsa_price, String pulsa_code, String pulsa_op, String pulsa_nominal, String pulsa_type, String masaaktif, String status) {
         this.pulsa_price = pulsa_price;
         this.pulsa_code = pulsa_code;
         this.pulsa_op = pulsa_op;

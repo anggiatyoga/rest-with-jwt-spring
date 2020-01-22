@@ -9,20 +9,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-//@Slf4j
 public class BaseErrorHandles {
-
-//    @ResponseBody
-//    @ExceptionHandler(value = ValidationException.class)
-//    public ResponseEntity<?> handleException(ValidationException exception) {
-//        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMsg());
-//    }
 
     @ExceptionHandler(ValidationException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ValidationResponse handleValidationException(ValidationException ve) {
-//        ValidationResponse response = new ValidationResponse(ve.getMsg(), ve.getStatus(), ve.getMsg());
         ValidationResponse response = new ValidationResponse(ve.getStatus(), ve.getMessage(), ve.getData());
         return response;
     }
