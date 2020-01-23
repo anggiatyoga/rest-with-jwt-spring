@@ -66,8 +66,6 @@ public class AuthController {
             status = "202(Accepted)";
         }
 
-
-
         map.put("data", new HashMap<String, Object>() {
             {
                 put("username", dataUsername);

@@ -6,16 +6,6 @@ public class ValidationResponse {
     private String status;
     private String message;
     private String data;
-//    private RegisterUser dataList;
-
-//    public ValidationResponse() {
-//    }
-
-//    public ValidationResponse(String status, String message, RegisterUser dataList) {
-//        this.status = status;
-//        this.message = message;
-//        this.dataList = dataList;
-//    }
 
     public ValidationResponse(String status, String message, String data) {
         this.status = status;

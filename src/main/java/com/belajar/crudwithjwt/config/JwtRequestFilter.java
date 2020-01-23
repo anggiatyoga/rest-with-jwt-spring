@@ -16,6 +16,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
@@ -35,14 +37,20 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String username = null;
         String jwtToken = null;
 
+        Map<String, Object> map = new HashMap<>();
+
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             jwtToken = requestTokenHeader.substring(7);
             try {
                 username = jwtTokenUtil.getUsernameFromToken(jwtToken);
             }catch (IllegalArgumentException e) {
-                System.out.println("Unable to get JWT Token");
+//                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+//                throw new ValidationException("unable to get JWT Token", "401(Unauthorised)", null);
+                System.out.println("Unable to get JWT Token : \n"+e);
             }catch (ExpiredJwtException e) {
-                System.out.println("JWT Token has expired");
+//                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "JWT Token has expired");
+//                throw new ValidationException("JWT TOken has expired", "401(Unauthorised)", null);
+                System.out.println("JWT Token has expired: \n"+e);
             }
         } else {
             logger.warn("JWT Token does not begin with Bearer String");
