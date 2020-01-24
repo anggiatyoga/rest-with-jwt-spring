@@ -120,7 +120,7 @@ public class BiodataController {
 
 
     @PostMapping("/biodata/create")
-    public Map<String, Object> create(@RequestBody Map<String, String> body){
+    public Map<String, Object> create(@RequestParam Map<String, String> body){
 
         String nik = body.get("nik");
         String nama = body.get("nama");
@@ -174,7 +174,7 @@ public class BiodataController {
 
     //update
     @PostMapping("/biodata/update")
-    public Map<String, Object> update(@RequestBody Map<String, String> body) {
+    public Map<String, Object> update(@RequestParam Map<String, String> body) {
 
         String dataNik = body.get("nik");
         long nikNya = 0;
@@ -224,7 +224,7 @@ public class BiodataController {
 
     //delete
     @PostMapping("/biodata/delete")
-    public Map<String, Object> delete(@RequestBody Map<String, String> body) {
+    public Map<String, Object> delete(@RequestParam Map<String, String> body) {
         String searchNik = body.get("nik");
         long nikNya = 0;
         try {

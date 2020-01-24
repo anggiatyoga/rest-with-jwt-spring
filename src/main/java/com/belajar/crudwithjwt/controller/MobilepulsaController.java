@@ -12,10 +12,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.xml.bind.DatatypeConverter;
@@ -44,7 +41,7 @@ public class MobilepulsaController {
 
 
     @PostMapping("/ppob/checkbalance")
-    public String checkbalance(@RequestBody Map<String, String> body) {
+    public String checkbalance(@RequestParam Map<String, String> body) {
         String type = body.get("type");
         String operator = body.get("operator");
         String outputJson = "";
@@ -89,7 +86,7 @@ public class MobilepulsaController {
     }
 
     @PostMapping("/ppob/pricelist")
-    public String pricelist(@RequestBody Map<String, String> body) {
+    public String pricelist(@RequestParam Map<String, String> body) {
         String type = body.get("type");
         String operator = body.get("operator");
         String outputJson = "";
@@ -134,7 +131,7 @@ public class MobilepulsaController {
     }
 
     @PostMapping("/ppob/checkgameid")
-    public String checkgameid(@RequestBody Map<String, String> body) {
+    public String checkgameid(@RequestParam Map<String, String> body) {
         String gameCode = body.get("game_code");
         String outputJson = "";
 
@@ -181,7 +178,7 @@ public class MobilepulsaController {
     }
 
     @PostMapping("ppob/topup")
-    public String topup(@RequestBody Map<String, String> body) {
+    public String topup(@RequestParam Map<String, String> body) {
         String hpCustomer = body.get("hp");
         String pulsaCode = body.get("pulsa_code");
         String outputJson = "";
@@ -231,7 +228,7 @@ public class MobilepulsaController {
     }
 
     @PostMapping("ppob/checkstatus")
-    public String checkstatus(@RequestBody Map<String, String> body) {
+    public String checkstatus(@RequestParam Map<String, String> body) {
         String refId = body.get("ref_id");
         String outputJson = "";
 
@@ -276,7 +273,7 @@ public class MobilepulsaController {
     }
 
     @PostMapping("ppob/payment")
-    public String payment(@RequestBody Map<String, String> body) {
+    public String payment(@RequestParam Map<String, String> body) {
         String trId = body.get("tr_id");
         String uname = "087773906676";
         String apiKey = "4645e149335884d2";
@@ -321,7 +318,7 @@ public class MobilepulsaController {
     }
 
     @PostMapping("ppob/inquiry")
-    public String inqury(@RequestBody Map<String, String> body) {
+    public String inqury(@RequestParam Map<String, String> body) {
         String code = body.get("code");
         String hp = body.get("hp");
         String refId = body.get("ref_id");

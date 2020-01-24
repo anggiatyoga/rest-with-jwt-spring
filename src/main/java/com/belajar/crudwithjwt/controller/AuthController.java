@@ -38,7 +38,7 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public Map<String, Object> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+    public Map<String, Object> createAuthenticationToken(@RequestParam JwtRequest authenticationRequest) throws Exception {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
         final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());

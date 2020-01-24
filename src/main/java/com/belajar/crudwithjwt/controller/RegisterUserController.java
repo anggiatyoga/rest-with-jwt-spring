@@ -6,10 +6,7 @@ import com.belajar.crudwithjwt.repository.RegisterUserRepository;
 import com.google.gson.Gson;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -28,7 +25,7 @@ public class RegisterUserController {
 
     //read by query search
     @PostMapping("/register/search")
-    public Map<String, Object> search(@RequestBody Map<String, String> body) {
+    public Map<String, Object> search(@RequestParam Map<String, String> body) {
         String searchTerm = body.get("cari");
         String status;
         String message;
@@ -100,7 +97,7 @@ public class RegisterUserController {
 
     //create
     @PostMapping("/register/create")
-    public Map<String, Object> create(@Valid @RequestBody Map<String, String> body, UriComponentsBuilder uriComponentsBuilder) {
+    public Map<String, Object> create(@Valid @RequestParam Map<String, String> body, UriComponentsBuilder uriComponentsBuilder) {
         String username = body.get("username");
         String numberphone = body.get("numberphone");
         String email = body.get("email");
