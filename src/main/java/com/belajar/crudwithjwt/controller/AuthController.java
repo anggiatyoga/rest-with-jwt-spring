@@ -75,7 +75,6 @@ public class AuthController {
         map.put("status", status);
         map.put("message", message);
 
-
         return map;
     }
 

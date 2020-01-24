@@ -28,7 +28,7 @@ public class BiodataController {
 
     //read (search by nik)
     @PostMapping("/biodata/search/nik")
-    public Map<String, Object> show(@RequestBody Map<String, String> body) {
+    public Map<String, Object> show(@RequestParam Map<String, String> body) {
         String searchNik = body.get("nik");
         long nikNya = 0;
         try {
@@ -77,7 +77,7 @@ public class BiodataController {
 
     //read (search by nama)
     @PostMapping("/biodata/search/nama")
-    public Map<String, Object> search(@RequestBody Map<String, String> body) {
+    public Map<String, Object> search(@RequestParam Map<String, String> body) {
         String searchName = body.get("nama");
 
         String status;
