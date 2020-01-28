@@ -41,13 +41,20 @@ public class AuthController {
 //    public Map<String, Object> search(@RequestParam Map<String, String> body) {
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public Map<String, Object> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+//    public Map<String, Object> createAuthenticationToken(@RequestParam JwtRequest authenticationRequest) throws Exception {
+    public Map<String, Object> createAuthenticationToken(@RequestParam Map<String, String> body) throws Exception {
+//        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-        final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+//        final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+//        final String token = jwtToken.generateToken(userDetails);
+//        String dataUsername = authenticationRequest.getUsername();
+//        String dataPassword = authenticationRequest.getPassword();
+
+        String dataUsername = body.get("username");
+        String dataPassword = body.get("password");
+        authenticate(dataUsername, dataPassword);
+        final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(dataUsername);
         final String token = jwtToken.generateToken(userDetails);
-        String dataUsername = authenticationRequest.getUsername();
-        String dataPassword = authenticationRequest.getPassword();
 
         Map<String, Object> map = new HashMap<>();
 
