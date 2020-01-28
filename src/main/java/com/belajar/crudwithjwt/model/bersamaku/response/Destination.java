@@ -1,18 +1,18 @@
-package com.belajar.crudwithjwt.model.bersamaku;
+package com.belajar.crudwithjwt.model.bersamaku.response;
 
 import javax.persistence.Entity;
 
 @Entity
-public class Source {
+public class Destination {
 
     private String amount;
     private String currency;
     private String country_Code;
 
-    public Source() {
+    public Destination() {
     }
 
-    public Source(String amount, String currency, String country_Code) {
+    public Destination(String amount, String currency, String country_Code) {
         this.amount = amount;
         this.currency = currency;
         this.country_Code = country_Code;
