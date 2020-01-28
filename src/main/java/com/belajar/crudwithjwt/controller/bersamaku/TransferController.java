@@ -38,16 +38,49 @@ public class TransferController {
 
         Map<String, Object> map = new HashMap<>();
 
-        map.put("transaction_ID", transactionId);
-        map.put("ref", "ref");
-        map.put("fee", "fee");
+        map.put("transaction_ID", new HashMap<String, String>() {
+            {
+                put("stan", "123456");
+                put("inst_ID","000001");
+                put("trans_Date_Time","20190817T21:42:31+07:00");
+            }
+        });
+        map.put("ref", new HashMap<String, String>(){
+            {
+                put("code","091614503800265A437");
+                put("finish_Estimation","20190819");
+            }
+        });
+        map.put("fee", new HashMap<String, String>(){
+            {
+                put("amount","500");
+                put("currency","IDR");
+            }
+        });
         map.put("mode", "source_amount");
-        map.put("source", "source");
-        map.put("destination", "destination");
+        map.put("source", new HashMap<String, String>(){
+            {
+                put("amount","1000000");
+                put("currency","IDR");
+                put("country_Code","IDN");
+            }
+        });
+        map.put("destination", new HashMap<String, String>(){
+            {
+                put("amount","512300");
+                put("currency","THB");
+                put("country_Code","THA");
+            }
+        });
         map.put("rate", "0.5123");
-        map.put("response","Response");
-        map.put("timestamp_response", "0190817T21:42:32.000+07:00");
-        map.put("signature", "23 ASDZXC");
+        map.put("Response", new HashMap<String, String>(){
+            {
+                put("code","00");
+                put("description", "Success");
+            }
+        });
+        map.put("timestamp_response", "20190817T21:42:32.000+07:00");
+        map.put("Signature", "123asdzxc");
 
 
         return map;
