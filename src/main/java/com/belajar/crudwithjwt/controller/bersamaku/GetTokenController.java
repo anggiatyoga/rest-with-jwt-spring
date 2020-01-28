@@ -21,8 +21,17 @@ public class GetTokenController {
     public Map<String, Object> getToken(@RequestParam Map<String, String> body) throws Exception{
 
         Map<String, Object> map = new HashMap<>();
-        map.put("access_token", "09161436170025D6E46");
-        map.put("expires_in", "20190817T21:42:31+07:00");
+
+        try {
+
+            map.put("access_token", "09161436170025D6E46");
+            map.put("expires_in", "20190817T21:42:31+07:00");
+        } catch (Exception e) {
+            map.put("error_code", "TK01");
+            map.put("error_description", "token invalid");
+        }
+
+
         return map;
     }
 
