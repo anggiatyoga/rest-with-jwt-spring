@@ -1,4 +1,4 @@
-package com.belajar.crudwithjwt.controller;
+package com.belajar.crudwithjwt.controller.mobilepulsa;
 
 import com.belajar.crudwithjwt.exceptions.ValidationException;
 import com.belajar.crudwithjwt.model.Biodata;

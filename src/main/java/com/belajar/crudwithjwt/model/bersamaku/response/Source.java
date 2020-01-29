@@ -2,7 +2,7 @@ package com.belajar.crudwithjwt.model.bersamaku.response;
 
 import javax.persistence.Entity;
 
-@Entity
+//@Entity
 public class Source {
 
     private String amount;

@@ -3,7 +3,7 @@ package com.belajar.crudwithjwt.model.bersamaku.response;
 import javax.persistence.Entity;
 import java.util.ArrayList;
 
-@Entity
+//@Entity
 public class TransactionInfo {
 
     private String reference_number;

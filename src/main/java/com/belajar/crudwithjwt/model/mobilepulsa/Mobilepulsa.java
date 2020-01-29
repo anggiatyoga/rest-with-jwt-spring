@@ -1,4 +1,4 @@
-package com.belajar.crudwithjwt.model;
+package com.belajar.crudwithjwt.model.mobilepulsa;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
