@@ -25,8 +25,8 @@ public class GetTokenController {
 
     //    @RequestMapping(value = "/bku/v1/oauth/token", method = RequestMethod.POST)
     @PostMapping("/oauth/token")
-    public Map<String, Object> getToken(@RequestParam Map<String, String> body) throws Exception{
-
+//    public Map<String, Object> getToken(@RequestParam Map<String, String> body) throws Exception{
+    public String getToken(@RequestParam Map<String, String> body) throws Exception{
         String grantType = body.get("grant_type");
         String outputJson = "";
         String message, status, data;
@@ -35,7 +35,7 @@ public class GetTokenController {
 
         try {
 
-            String url = "http://tisande.diginova.id:81/api/bku/v1";
+            String url = "http://tisande.diginova.id:81/api/bku/v1/oauth/token";
             URL obj = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -66,7 +66,8 @@ public class GetTokenController {
 //            map.put("error_description", "token invalid");
 //        }
 
-        return map;
+        return outputJson;
+//        return map;
     }
 
     private static String convertStreamToString(InputStream is) {
