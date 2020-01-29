@@ -23,14 +23,10 @@ public class GetTokenController {
         this.getTokenRepository = getTokenRepository;
     }
 
-    //    @RequestMapping(value = "/bku/v1/oauth/token", method = RequestMethod.POST)
-    @PostMapping("/oauth/token")
-//    public Map<String, Object> getToken(@RequestParam Map<String, String> body) throws Exception{
+    @PostMapping("/bersamaku/bku/v1/oauth/token")
     public String getToken(@RequestParam Map<String, String> body) throws Exception{
         String grantType = body.get("grant_type");
         String outputJson = "";
-        String message, status, data;
-
         Map<String, Object> map = new HashMap<>();
 
         try {
@@ -45,29 +41,13 @@ public class GetTokenController {
             outputJson = convertStreamToString(conn.getInputStream());
             System.out.println(outputJson);
 
-            message = "berhasil";
-            status = "200";
-            data = outputJson;
 
         } catch (Exception e) {
             e.printStackTrace();
-            message = "gagal";
-            status = "403";
-            data = null;
         }
 
-//        Map<String, Object> map = new HashMap<>();
-//
-//        try {
-//            map.put("access_token", "09161436170025D6E46");
-//            map.put("expires_in", "20190817T21:42:31+07:00");
-//        } catch (BadCredentialsException e) {
-//            map.put("error_code", "TK01");
-//            map.put("error_description", "token invalid");
-//        }
 
         return outputJson;
-//        return map;
     }
 
     private static String convertStreamToString(InputStream is) {

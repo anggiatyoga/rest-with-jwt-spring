@@ -1,4 +1,4 @@
-package com.belajar.crudwithjwt.repository;
+package com.belajar.crudwithjwt.repository.mobilepulsa;
 
 import com.belajar.crudwithjwt.model.mobilepulsa.Mobilepulsa;
 import org.springframework.data.jpa.repository.JpaRepository;

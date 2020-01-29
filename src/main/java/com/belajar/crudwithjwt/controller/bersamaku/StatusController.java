@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,87 +22,36 @@ public class StatusController {
         this.statusRepository = statusRepository;
     }
 
-    @PostMapping("/bku/v1/outboundAcc/status")
-    public Map<String, Object> status(@RequestParam Map<String, String> body) {
+    @PostMapping("bersamaku/bku/v1/outboundAcc/status")
+    public String status(@RequestParam Map<String, String> body) {
         String transactionId = body.get("transaction_ID");
-        //sub transactionId
-        String stan = body.get("stan");
-        String instId = body.get("inst_id");
-        String transDateTime = body.get("trans_date_time");
-
         String query = body.get("query");
 
         String signature = body.get("signature");
 
+        String outputJson = "";
         Map<String, Object> map = new HashMap<>();
 
         try {
-            map.put("transaction_ID", new HashMap<String, String>() {
-                {
-                    put("stan", stan);
-                    put("inst_ID",instId);
-                    put("trans_Date_Time", transDateTime);
-                }
-            });
-            map.put("TransactionInfo", new HashMap<String, Object>(){
-                {
-                    put("transaction_ID", new HashMap<String, Object>(){
-                        {
-                            put("stan", "123456");
-                            put("inst_ID", "000001");
-                            put("trans_Date_Time","20190817T21:42:31+07:00");
-                        }
-                    });
-                }
-            });
-            map.put("ref", new HashMap<String, String>(){
-                {
-                    put("code","09161520560027C2299");
-                    put("finish_estimation","20190819");
-                }
-            });
-            map.put("fee", new HashMap<String, String>(){
-                {
-                    put("amount","500");
-                    put("currency","IDR");
-                }
-            });
-            map.put("mode","source_amount");
-            map.put("source", new HashMap<String, String>(){
-                {
-                    put("amount","1000000");
-                    put("currency","IDR");
-                    put("country_Code","THA");
-                }
-            });
-            map.put("rate","0.5123");
-            map.put("Response", new HashMap<String,String>(){
-                {
-                    put("code","00");
-                    put("description","Success");
-                }
-            });
-            map.put("transaction_state","Submitted");
-            map.put("timestamp_response","20190817T21:42:32.000+07:00");
-            map.put("Signature","123 ASDZXC");
-        } catch (BadCredentialsException e){
-            map.put("transaction_ID", new HashMap<String, String>() {
-                {
-                    put("stan", stan);
-                    put("inst_ID", instId);
-                    put("trans_Date_Time", transDateTime);
-                }
-            });
-            map.put("Response", new HashMap<String, String>(){
-                {
-                    put("code","EEEE");
-                    put("description", "Unexpected Error");
-                }
-            });
-            map.put("timestamp_response", "20190817T21:42:32.000+07:00");
+            String url = "http://tisande.diginova.id:81/api/bku/v1/outboundAcc/status";
+            URL obj = new URL(url);
+            HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            conn.setDoOutput(true);
+            conn.setRequestMethod("POST");
+
+            outputJson = convertStreamToString(conn.getInputStream());
+            System.out.println(outputJson);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        return map;
+        return outputJson;
+    }
+
+    private static String convertStreamToString(InputStream is) {
+        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+        return s.hasNext() ? s.next() : "";
     }
 
 }
