@@ -3,6 +3,7 @@ package com.belajar.crudwithjwt.service;
 import com.belajar.crudwithjwt.model.RegisterUser;
 import com.belajar.crudwithjwt.repository.RegisterUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
-//@SpringBootApplication
+@SpringBootApplication
 //@ComponentScan({"com.delivery.request"})
 //@EntityScan("com.delivery.domain")
 //@EnableJpaRepositories("com.delivery.repository")

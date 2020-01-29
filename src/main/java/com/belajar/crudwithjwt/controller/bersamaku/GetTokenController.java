@@ -16,7 +16,14 @@ import java.util.Map;
 @RestController
 public class GetTokenController {
 
-//    @RequestMapping(value = "/bku/v1/oauth/token", method = RequestMethod.POST)
+    final
+    private GetTokenRepository getTokenRepository;
+
+    public GetTokenController(GetTokenRepository getTokenRepository) {
+        this.getTokenRepository = getTokenRepository;
+    }
+
+    //    @RequestMapping(value = "/bku/v1/oauth/token", method = RequestMethod.POST)
     @PostMapping("/oauth/token")
     public Map<String, Object> getToken(@RequestParam Map<String, String> body) throws Exception{
 
