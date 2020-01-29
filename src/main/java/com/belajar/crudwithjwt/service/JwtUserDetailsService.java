@@ -19,7 +19,8 @@ import java.util.ArrayList;
 @Component
 public class JwtUserDetailsService implements UserDetailsService{
 
-    @Autowired(required = true)
+//    @Autowired(required = true)
+    @Autowired
     private RegisterUserRepository registerUserRepository;
 
 
