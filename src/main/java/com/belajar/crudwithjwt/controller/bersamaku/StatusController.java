@@ -99,7 +99,6 @@ public class StatusController {
             map.put("timestamp_response", "20190817T21:42:32.000+07:00");
         }
 
-
         return map;
     }
 
