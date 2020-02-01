@@ -55,7 +55,6 @@ public class RegisterUserController {
             map.put("message", message);
         }
 
-
         return map;
     }
 

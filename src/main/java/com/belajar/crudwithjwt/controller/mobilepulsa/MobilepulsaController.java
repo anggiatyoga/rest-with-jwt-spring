@@ -32,8 +32,7 @@ public class MobilepulsaController {
 
     @PostMapping("/ppob/checkbalance")
     public String checkbalance(@RequestParam Map<String, String> body) {
-        String type = body.get("type");
-        String operator = body.get("operator");
+        String test = body.get("test");
         String outputJson = "";
 
         try{
@@ -41,9 +40,10 @@ public class MobilepulsaController {
 
             URL obj = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
-            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");
+            conn.setRequestProperty("Accept", "application/json");
 
             String uname = "087773906676";
             String pass = "4645e149335884d2";
@@ -60,7 +60,7 @@ public class MobilepulsaController {
                     "  \"sign\"     : \""+ myHash + "\"\n" +
                     "}";
 
-            OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream(), "UTF-8");
+            OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
             out.write(data);
 
             out.close();

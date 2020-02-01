@@ -16,6 +16,8 @@ public interface RegisterUserRepository extends JpaRepository<RegisterUser, Inte
 
     RegisterUser findByUsername(String username);
 
+    RegisterUser findByEmail(String email);
+
     Optional<RegisterUser> findByUsernameOrNumberphoneOrEmail(String textOne, String textTwo, String textThree);
 
 
