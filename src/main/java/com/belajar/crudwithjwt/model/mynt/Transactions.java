@@ -2,7 +2,7 @@ package com.belajar.crudwithjwt.model.mynt;
 
 import javax.persistence.Entity;
 
-@Entity
+//@Entity
 public class Transactions {
 
     private String status;

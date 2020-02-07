@@ -1,7 +1,9 @@
 package com.belajar.crudwithjwt.model.mynt;
 
+import javax.persistence.Entity;
 import java.util.ArrayList;
 
+//@Entity
 public class MemberModel {
 
     private String status;

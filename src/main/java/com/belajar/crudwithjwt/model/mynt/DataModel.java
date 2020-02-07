@@ -3,7 +3,7 @@ package com.belajar.crudwithjwt.model.mynt;
 import javax.persistence.Entity;
 import java.util.ArrayList;
 
-@Entity
+//@Entity
 public class DataModel {
 
     private String address;
