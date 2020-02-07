@@ -95,9 +95,9 @@ public class DataModel {
     }
 
     // API Login
-    public DataModel(String token) {
-        this.token = token;
-    }
+//    public DataModel(String token) {
+//        this.token = token;
+//    }
 
     // company.member.profiles
     public DataModel(String account_number, String account_name, String referral_code, String referral_name, String referral_phone, String referral_email, String member_type, String member_status, String mynt_id, String last_balance, String limit_balance, String limit_transactions, String total_transactions, String avatar, String phone, String email, String address, String country_code, String country_name, String birth_date, String birth_place, String occupation, String citizenship, String id_number, String fund_resource, String reject_reason, String registered_at, String last_updated_at) {
@@ -144,10 +144,10 @@ public class DataModel {
     }
 
     // company.member.banks.regencies
-    public DataModel(String regency_code, String regency_name) {
-        this.regency_code = regency_code;
-        this.regency_name = regency_name;
-    }
+//    public DataModel(String regency_code, String regency_name) {
+//        this.regency_code = regency_code;
+//        this.regency_name = regency_name;
+//    }
 
     // company.member.banks.province
     public DataModel(String code, String created_at, String updated_at, String id, String name) {
@@ -159,27 +159,27 @@ public class DataModel {
     }
 
     // company.member.banks.code
-    public DataModel(String bank_code, String bank_name){
-        this.bank_code = bank_code;
-        this.bank_name = bank_name;
-    }
+//    public DataModel(String bank_code, String bank_name){
+//        this.bank_code = bank_code;
+//        this.bank_name = bank_name;
+//    }
 
     // company.member.banks.account
-    public DataModel(String status, String bank_id, String bank_code, String bank_name, String account_number, String account_name, String registered_at) {
-        this.status = status;
-        this.bank_id = bank_id;
-        this.bank_code = bank_code;
-        this.bank_name = bank_name;
-        this.account_number = account_number;
-        this.account_name = account_name;
-        this.registered_at = registered_at;
-    }
+//    public DataModel(String status, String bank_id, String bank_code, String bank_name, String account_number, String account_name, String registered_at) {
+//        this.status = status;
+//        this.bank_id = bank_id;
+//        this.bank_code = bank_code;
+//        this.bank_name = bank_name;
+//        this.account_number = account_number;
+//        this.account_name = account_name;
+//        this.registered_at = registered_at;
+//    }
 
     // company.member.services mynt to mynt || mynt to bank ||  payment
-    public DataModel(String service_code, String service_name){
-        this.service_code = service_code;
-        this.service_name = service_name;
-    }
+//    public DataModel(String service_code, String service_name){
+//        this.service_code = service_code;
+//        this.service_name = service_name;
+//    }
 
     // company.member.transactions.inquiry
     public DataModel(String amount, String account_name, String account_number, String bank_code, String bank_name, String inquired_at, String inquiry_id, String reference_code, String trace_id, String service_code, String service_name) {
