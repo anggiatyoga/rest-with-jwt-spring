@@ -43,11 +43,6 @@ public class AuthController {
         this.authenticateRepository = authenticateRepository;
     }
 
-
-
-//    @PostMapping("/biodata/search/nama")
-//    public Map<String, Object> search(@RequestParam Map<String, String> body) {
-
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 //    public Map<String, Object> createAuthenticationToken(@RequestParam JwtRequest authenticationRequest) throws Exception {
     public Map<String, Object> createAuthenticationToken(@RequestParam Map<String, String> body) throws Exception {
@@ -72,7 +67,6 @@ public class AuthController {
             authenticate(dataUsername, dataPassword);
             final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(dataUsername);
             final String token = jwtToken.generateToken(userDetails);
-
 
 
             if (authenticateRepository.existsByUsername(dataUsername)){
