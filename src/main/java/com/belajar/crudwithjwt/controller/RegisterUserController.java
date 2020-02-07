@@ -106,7 +106,6 @@ public class RegisterUserController {
         String status;
         String message;
 
-
         if (registerUserRepository.existsByUsername(username)){
 
             message = "username telah digunakan";
