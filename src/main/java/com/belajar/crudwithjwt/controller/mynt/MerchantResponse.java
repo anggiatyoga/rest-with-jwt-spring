@@ -1,25 +1,10 @@
 package com.belajar.crudwithjwt.controller.mynt;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.io.InputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CompanyResponse {
-
-    public static String convertStreamToString(InputStream is) {
-        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
-        return s.hasNext() ? s.next() : "";
-    }
-
-    Map<String, Object> companyLogin(){
+public class MerchantResponse {
+    public Map<String, Object> companyMerchantLogin() {
 
         Map<String, Object> map = new HashMap<>();
 
@@ -35,23 +20,25 @@ public class CompanyResponse {
         return map;
     }
 
-    Map<String, Object> companyLoginOtp(){
+    public Map<String, Object> companyMerchantLoginOtp() {
 
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
         map.put("code", 200);
-        map.put("message", "Login success");
+        map.put("message", "login success");
         map.put("data", new HashMap<String, Object>(){
             {
-                put("token","yJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjBhNjg0YmNlYTE4YWVkYzg0 ..");
+                put("token","eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjBhN");
             }
         });
 
+
         return map;
+
     }
 
-    Map<String, Object> companyLogout(){
+    public Map<String, Object> companyMerchantLogout() {
 
         Map<String, Object> map = new HashMap<>();
 
@@ -60,9 +47,10 @@ public class CompanyResponse {
         map.put("message", "Logout success");
 
         return map;
+
     }
 
-    Map<String, Object> companyProfiles(){
+    public Map<String, Object> companyMerchantProfile() {
 
         Map<String, Object> map = new HashMap<>();
 
@@ -72,24 +60,28 @@ public class CompanyResponse {
         map.put("data", new HashMap<String, Object>(){
             {
                 put("account_number","000170000006");
-                put("account_name","artajasa pembayaran elektronis, pt");
+                put("account_name","Merchant 1");
                 put("referral_code","000");
-                put("mynt_id","artajasa");
-                put("last_balance","10000000");
-                put("limit_balance","10000000");
+                put("referral_name","PT. Artajasa Pembayaran Elektronis");
+                put("referral_phone","628139293839");
+                put("referral_email","info@artajasa.co.id");
+                put("member_type","DEFAULT");
+                put("mynt_id","Merchant1");
+                put("last_balance","1000000");
+                put("limit_balance","1000000");
                 put("limit_transactions","50000000");
                 put("total_transactions","200000");
                 put("phone","622129706789");
-                put("email","info@artajasa.co.id");
-                put("address","Gedung Grha Artajasa");
-                put("country_code","id");
-                put("country_name","indonesia");
-                put("birth_date","1992-08-31");
-                put("birth_place","jakarta");
-                put("occupation","employee");
-                put("citizenship","indonesia");
-                put("id_number","098765434678");
-                put("fund_resource","saving");
+                put("email","alpha.store@gmail.com");
+                put("address","Jakarta Selatan");
+                put("country_code","null");
+                put("country_name","null");
+                put("birth_date","null");
+                put("birth_place","null");
+                put("occupation","null");
+                put("citizenship","null");
+                put("id_number","null");
+                put("fund_resource","null");
                 put("reject_reason","null");
                 put("registered_at","2017-01-01 00:00:00");
                 put("last_updated_at","2017-08-01 00:00:00");
@@ -97,9 +89,10 @@ public class CompanyResponse {
         });
 
         return map;
+
     }
 
-    Map<String, Object> companyLogAccess(){
+    public Map<String, Object> companyMerchantLogsAccess() {
 
         Map<String, Object> map = new HashMap<>();
 
@@ -115,9 +108,11 @@ public class CompanyResponse {
         });
 
         return map;
+
     }
 
-    Map<String, Object> companyLogNotifications(){
+
+    public Map<String, Object> companyMerchantLogsNotifications() {
 
         Map<String, Object> map = new HashMap<>();
 
@@ -134,9 +129,11 @@ public class CompanyResponse {
         });
 
         return map;
+
     }
 
-    public Map<String, Object> companyProfilesUpdateIdentity() {
+    public Map<String, Object> companyMerchantProfilesUpdateIdentity() {
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
@@ -144,9 +141,11 @@ public class CompanyResponse {
         map.put("message", "success");
 
         return map;
+
     }
 
-    public Map<String, Object> companyProfilesUpdateAvatar() {
+    public Map<String, Object> companyMerchantProfilesUpdateAvatar() {
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
@@ -154,9 +153,11 @@ public class CompanyResponse {
         map.put("message", "success");
 
         return map;
+
     }
 
-    public Map<String, Object> companyProfilesUpdateCredential() {
+    public Map<String, Object> companyMerchantProfilesUpdateCredential() {
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
@@ -164,9 +165,11 @@ public class CompanyResponse {
         map.put("message", "success");
 
         return map;
+
     }
 
-    public Map<String, Object> companyProfilesCheckPhone() {
+    public Map<String, Object> companyMerchantProfilesCheckPhone() {
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
@@ -174,9 +177,11 @@ public class CompanyResponse {
         map.put("message", "success");
 
         return map;
+
     }
 
-    public Map<String, Object> companyProfilesUpdatePhone() {
+    public Map<String, Object> companyMerchantProfilesUpdatePhone() {
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
@@ -184,9 +189,11 @@ public class CompanyResponse {
         map.put("message", "success");
 
         return map;
+
     }
 
-    public Map<String, Object> companyPinChange() {
+    public Map<String, Object> companyMerchantPinChange() {
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
@@ -194,9 +201,11 @@ public class CompanyResponse {
         map.put("message", "success");
 
         return map;
+
     }
 
-    public Map<String, Object> companyPinForgot() {
+    public Map<String, Object> companyMerchantPasswordForgotRequest() {
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
@@ -204,9 +213,11 @@ public class CompanyResponse {
         map.put("message", "success");
 
         return map;
+
     }
 
-    public Map<String, Object> companyPasswordForgotRequest() {
+    public Map<String, Object> companyMerchantPasswordForgotChange() {
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
@@ -214,194 +225,11 @@ public class CompanyResponse {
         map.put("message", "success");
 
         return map;
-    }
-
-    public Map<String, Object> companyPasswordForgotChange() {
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("status",true);
-        map.put("code", 200);
-        map.put("message", "success");
-
-        return map;
-    }
-
-    public Map<String, Object> companyMerchantSettlementSchedule() {
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("status",true);
-        map.put("code", 200);
-        map.put("message", "success");
-
-        return map;
-    }
-
-    public Map<String, Object> companyMerchantSettlement() {
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("status",true);
-        map.put("code", 200);
-        map.put("message", "success");
-
-        return map;
-    }
-
-    public Map<String, Object> companyRequestDeactivate() {
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("status",true);
-        map.put("code", 200);
-        map.put("message", "success");
-
-        return map;
-    }
-
-    public Map<String, Object> companyRequestAcctivate() {
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("status",true);
-        map.put("code", 200);
-        map.put("message", "success");
-
-        return map;
-    }
-
-    public Map<String, Object> companyRequestClose() {
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("status",true);
-        map.put("code", 200);
-        map.put("message", "success");
-
-        return map;
-    }
-
-    public Map<String, Object> companyMemberRegister() {
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("status",true);
-        map.put("code", 200);
-        map.put("message", "success");
-
-        return map;
-    }
-
-    public Map<String, Object> companyMerchantTypes() {
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("status",true);
-        map.put("code", 200);
-        map.put("message", "success");
-        map.put("data", new HashMap<String, Object>(){
-            {
-                put("code","5b5af3d0-9c5a-11e8-a274-19fcdc62d9b8");
-                put("name","DEFAULT");
-                put("deposit",20000);
-                put("limit_balance",2000000);
-                put("limit_transaction",20000000);
-                put("services", new HashMap<String, Object>(){
-                    {
-                        put("code","006");
-                        put("name","TRANSFER MYNT TO MYNT");
-                    };
-                    {
-                        put("code","006");
-                        put("name","TRANSFER MYNT TO MYNT");
-                    };
-
-                });
-                put("document_types",new HashMap<String, Object>(){
-                    {
-                        put("code",001);
-                        put("name","PASSBOOK");
-                    }
-                });
-            }
-        });
-
-        return map;
 
     }
 
-    public Map<String, Object> companyMerchantRegister() {
-        Map<String, Object> map = new HashMap<>();
+    public Map<String, Object> companyMerchantBanksAccount() {
 
-        map.put("status",true);
-        map.put("code", 200);
-        map.put("message", "registration success");
-
-        return map;
-    }
-
-    public Map<String, Object> companyAccountsMerchants() {
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("status",true);
-        map.put("code", 200);
-        map.put("message", "success");
-        map.put("data", new HashMap<String, Object>(){
-            {
-                put("account_number","000170000003");
-                put("account_name","alpha store");
-                put("phone","6285812345678");
-                put("email","alpha.store@gmail.com");
-                put("deposit","100000");
-                put("last_balance","20000000");
-                put("ettlement_schedule", new HashMap<String, Object>(){
-                    {
-                        put("00:00","18:00");
-                    }
-                });
-                put("registed_at","2017-08-17 16:00:00");
-            };
-            {
-                put("account_number","000170000003");
-                put("account_name","beta store");
-                put("phone","6285812345678");
-                put("email","beta.store@gmail.com");
-                put("deposit","100000");
-                put("last_balance","20000000");
-                put("ettlement_schedule", new HashMap<String, Object>(){
-                    {
-                        put("00:00","18:00");
-                    }
-                });
-                put("registed_at","2017-08-17 16:00:00");
-            };
-        });
-
-        return map;
-    }
-
-    public Map<String, Object> companyAccountsMember() {
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("status",true);
-        map.put("code", 200);
-        map.put("message", "success");
-        map.put("data", new HashMap<String, Object>(){
-            {
-                put("account_type","registered");
-                put("account_number","000170000001");
-                put("account_name","john doe");
-                put("phone","6281212345678");
-                put("email","john.doe@gmail.com");
-                put("registered_at","2017-08-17 13:30:40");
-            };
-            {
-                put("account_type","unregistered");
-                put("account_number","000170000001");
-                put("account_name","jane doe");
-                put("phone","6281212345678");
-                put("email","john.doe@gmail.com");
-                put("registered_at","2017-08-17 14:20:00");
-            };
-            {};
-        });
-        return map;
-    }
-
-    public Map<String, Object> companyBanksAccount() {
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
@@ -421,9 +249,11 @@ public class CompanyResponse {
         });
 
         return map;
+
     }
 
-    public Map<String, Object> companyBanksCode() {
+    public Map<String, Object> companyMerchantBanksCode() {
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
@@ -438,9 +268,11 @@ public class CompanyResponse {
         });
 
         return map;
+
     }
 
-    public Map<String, Object> companyBanksRegencies() {
+    public Map<String, Object> companyMerchantBanksRegencies() {
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
@@ -455,9 +287,11 @@ public class CompanyResponse {
         });
 
         return map;
+
     }
 
-    public Map<String, Object> companyBanksProvice() {
+    public Map<String, Object> companyMerchantBanksProvice() {
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
@@ -475,9 +309,11 @@ public class CompanyResponse {
         });
 
         return map;
+
     }
 
-    public Map<String, Object> companyBanksRegister() {
+    public Map<String, Object> companyMerchantBanksRegister() {
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
@@ -485,9 +321,11 @@ public class CompanyResponse {
         map.put("message", "success");
 
         return map;
+
     }
 
-    public Map<String, Object> companyServices() {
+    public Map<String, Object> companyMerchantServices() {
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
@@ -505,9 +343,11 @@ public class CompanyResponse {
         });
 
         return map;
+
     }
 
-    public Map<String, Object> companyTransactionsInquiry() {
+    public Map<String, Object> companyMerchantTransactionInquiry() {
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
@@ -516,11 +356,12 @@ public class CompanyResponse {
         map.put("data", new HashMap<String, Object>(){
             {
                 put("inquiry_id","1111222233330001");
+                put("reference_code","83787usdhi");
                 put("trace_id","1234567890001");
                 put("service_code","001");
-                put("service_name","transfer mynt to myn");
+                put("service_name","transfer mynt to mynt");
                 put("account_number","000170000001");
-                put("account_name","john do");
+                put("account_name","john doe");
                 put("bank_code",null);
                 put("bank_name",null);
                 put("amount",500000);
@@ -530,9 +371,11 @@ public class CompanyResponse {
         });
 
         return map;
+
     }
 
-    public Map<String, Object> companyTransactionsCommit() {
+    public Map<String, Object> companyMerchantTransactionsCommit() {
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
@@ -542,14 +385,15 @@ public class CompanyResponse {
             {
                 put("commit_id","1111222233330001");
                 put("inquiry_id","1234567890001");
-                put("trace_id","001");
-                put("service_code","transfer mynt to mynt");
-                put("service_name","000170000001");
-                put("account_number","john do");
-                put("account_name",null);
+                put("reference_code","83787usdhi");
+                put("trace_id","1234567890002");
+                put("service_code","001");
+                put("service_name","transfer mynt to mynt");
+                put("account_number","000170000001");
+                put("account_name","john doe");
                 put("bank_code",null);
-                put("bank_name",500000);
-                put("amount","2017-08-17 20:00:00");
+                put("bank_name",null);
+                put("amount",50000);
                 put("inquired_at","2017-08-17 20:01:0");
                 put("committed_at","2017-08-17 20:01:0");
             };
@@ -557,9 +401,78 @@ public class CompanyResponse {
         });
 
         return map;
+
     }
 
-    public Map<String, Object> companyAccountsRecipients() {
+    public Map<String, Object> companyMerchantTransactionsStatus() {
+
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("status",true);
+        map.put("code", 200);
+        map.put("message", "success");
+        map.put("data", new HashMap<String, Object>(){
+            {
+                put("status","commited");
+                put("inquiry_id","1111222233330001");
+                put("commit_id","4444555566660001");
+                put("reference_code ","jdhsjh28129");
+                put("reversal_id",null);
+                put("inquiry_trace_id","123456789abcdefghi0001");
+                put("commit_trace_id","123456789abcdefghi0002");
+                put("reversal_trace_id",null);
+                put("trace_id","1234567890005");
+                put("service_code","001");
+                put("service_name","transfer mynt to mynt");
+                put("account_number","000170000001");
+                put("account_name","john doe");
+                put("bank_code",null);
+                put("bank_name",null);
+                put("amount",500000);
+                put("inquired_at","2017-08-17 20:30:0");
+                put("committed_a","2017-08-17 20:30:0");
+                put("reversed_at",null);
+                put("requested_at","2017-08-17 20:30:0");
+            };
+            {};
+        });
+
+        return map;
+
+    }
+
+    public Map<String, Object> companyMerchantTokenValidate() {
+
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("status",true);
+        map.put("code", 200);
+        map.put("message", "success");
+        map.put("data", new HashMap<String, Object>(){
+            {
+                put("commit_id","4444555566660001");
+                put("reference_code ","jdhsjh28129");
+                put("inquiry_id","1111222233330001");
+                put("trace_id","123456789abcdefghi0002");
+                put("service_code","003");
+                put("service_name","purchase");
+                put("account_number","000170000001");
+                put("account_name","john doe");
+                put("bank_code",null);
+                put("bank_name",null);
+                put("amount",20000);
+                put("inquired_at","2017-08-17 20:30:0");
+                put("committed_a","2017-08-17 20:30:0");
+            };
+            {};
+        });
+
+        return map;
+
+    }
+
+    public Map<String, Object> companyMerchantAccountsRecipients() {
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
@@ -574,10 +487,13 @@ public class CompanyResponse {
             };
             {};
         });
+
         return map;
+
     }
 
-    public Map<String, Object> companyTransactionsReversal() {
+    public Map<String, Object> companyMerchantTransactionsReversal() {
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
@@ -588,40 +504,7 @@ public class CompanyResponse {
                 put("reversal_id","9999888877770001");
                 put("inquiry_id","1111222233330001");
                 put("commit_id","827329202003933");
-                put("trace_id","123456789abcdefghi0006");
-                put("service_code","001");
-                put("service_name","transfer mynt to myn");
-                put("account_number","000170000001");
-                put("account_name","john doe");
-                put("bank_code",null);
-                put("bank_name",null);
-                put("amount",500000);
-                put("inquired_at","2017-08-17 20:01:0");
-                put("committed_at","2017-08-17 20:12:0");
-                put("reversed_at","2017-08-17 20:30:0");
-            };
-            {};
-        });
-
-        return map;
-    }
-
-    public Map<String, Object> companyTransactionsStatus() {
-        Map<String, Object> map = new HashMap<>();
-
-        map.put("status",true);
-        map.put("code", 200);
-        map.put("message", "success");
-        map.put("data", new HashMap<String, Object>(){
-            {
-                put("status","9999888877770001");
-                put("inquiry_id","1111222233330001");
-                put("commit_id","827329202003933");
-                put("reversal_id",null);
-                put("inquiry_trace_id","123456789abcdefghi0001");
-                put("commit_trace_id","123456789abcdefghi0002");
-                put("reversal_trace_id",null);
-                put("trace_id","23456789abcdefghi0005");
+                put("trace_id","1234567890006");
                 put("service_code","001");
                 put("service_name","transfer mynt to mynt");
                 put("account_number","000170000001");
@@ -629,19 +512,19 @@ public class CompanyResponse {
                 put("bank_code",null);
                 put("bank_name",null);
                 put("amount",500000);
-                put("charge",2000);
-                put("inquired_at","2017-08-17 20:30:0");
-                put("committed_a","2017-08-17 20:30:0");
-                put("reversed_at",null);
-                put("requested_at","2017-08-17 20:30:0");
+                put("inquired_at","2017-08-17 20:01:00");
+                put("committed_at","2017-08-17 20:12:00");
+                put("reversed_at","2017-08-17 20:30:00");
             };
             {};
         });
 
         return map;
+
     }
 
-    public Map<String, Object> companyLTransactionsHistorySuccess() {
+    public Map<String, Object> companyMerchantTransactionsSuccess() {
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
@@ -670,7 +553,8 @@ public class CompanyResponse {
         return map;
     }
 
-    public Map<String, Object> companyTransactionsHistoryProgress() {
+    public Map<String, Object> companyMerchantTransactionsHistoryProgress() {
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("status",true);
@@ -678,23 +562,24 @@ public class CompanyResponse {
         map.put("message", "success");
         map.put("data", new HashMap<String, Object>(){
             {
-                put("page",1);
-                put("page_total",1);
-                put("transactions",new HashMap<String, Object>(){
+                put("page", "1");
+                put("page_total","1");
+                put("transactions", new HashMap<String, Object>(){
                     {
-                        put("status","pending");
-                        put("transaction_id", "1111222233330002");
-                        put("transaction_name","transfer mynt to bank");
+                        put("status", "pending");
+                        put("transaction_id","1111222233330002");
+                        put("transaction_name", "transfer mynt to bank");
                         put("related_account_number","001001001");
-                        put("related_account_name","ben doe");
+                        put("related_account_name", "ben doe");
                         put("amount",500000);
-                        put("transaction_time","2017-08-17 21:00:00");
-                    }
+                        put("transaction_time", "2017-08-17 21:00:00");
+                    };
+                    {};
                 });
             };
-            {};
         });
 
         return map;
+
     }
 }

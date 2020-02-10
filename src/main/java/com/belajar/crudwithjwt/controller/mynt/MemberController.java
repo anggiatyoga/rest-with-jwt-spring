@@ -15,7 +15,6 @@ public class MemberController {
 
     @PostMapping("/mynt/member")
     public Map<String, Object> login(@RequestParam Map<String, String> body) {
-//        String test = body.get("key");
         String function = body.get("function");
         String username = body.get("username");
         String password = body.get("password");
