@@ -1,6 +1,8 @@
 package com.belajar.crudwithjwt.controller.mobilepulsa;
 
 import com.belajar.crudwithjwt.repository.mobilepulsa.MobilepulsaRepository;
+import com.belajar.crudwithjwt.utils.Utils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,7 @@ public class MobilepulsaController {
         this.mobilepulsaRepository = mobilepulsaRepository;
     }
 
+    Utils utils = new Utils();
 
     @PostMapping("/ppob/checkbalance")
     public String checkbalance(@RequestParam Map<String, String> body) {
@@ -63,7 +66,7 @@ public class MobilepulsaController {
 
             out.close();
 
-            outputJson = convertStreamToString(conn.getInputStream());
+            outputJson = utils.convertStreamToString(conn.getInputStream());
 
             System.out.print(outputJson);
 
@@ -107,7 +110,7 @@ public class MobilepulsaController {
             out.write(data);
 
             out.close();
-            outputJson = convertStreamToString(conn.getInputStream());
+            outputJson = utils.convertStreamToString(conn.getInputStream());
 
             System.out.print(outputJson);
 
@@ -155,7 +158,7 @@ public class MobilepulsaController {
 
             out.close();
 
-            outputJson = convertStreamToString(conn.getInputStream());
+            outputJson = utils.convertStreamToString(conn.getInputStream());
 
             System.out.print(outputJson);
 
@@ -165,55 +168,7 @@ public class MobilepulsaController {
         return outputJson;
     }
 
-    @PostMapping("ppob/topup")
-    public String topup(@RequestParam Map<String, String> body) {
-        String hpCustomer = body.get("hp");
-        String pulsaCode = body.get("pulsa_code");
-        String outputJson = "";
 
-        try {
-
-            String url = "https://testprepaid.mobilepulsa.net/v1/legacy/index";
-
-            URL obj = new URL(url);
-            HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setDoOutput(true);
-            conn.setRequestMethod("POST");
-
-            String uname = "087773906676";
-            String pass = "4645e149335884d2";
-            Date dNow = new Date();
-            SimpleDateFormat ft = new SimpleDateFormat("yyyyMMddhhmmss");
-            String refId = ft.format(dNow);
-            String sign = uname + pass + refId;
-
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(sign.getBytes());
-            byte[] digest = md.digest();
-            String myHash = DatatypeConverter.printHexBinary(digest).toLowerCase();
-
-            String data =  "{\n" +
-                    "  \"commands\"   : \"topup\",\n" +
-                    "  \"username\"   : \"" + uname + "\",\n" +
-                    "  \"ref_id\"     : \"" + refId + "\",\n" +
-                    "  \"hp\"     : \"" + hpCustomer + "\",\n" +
-                    "  \"pulsa_code\" : \""+ pulsaCode +"\",\n" +
-                    "  \"sign\"       : \"" + myHash + "\"\n" +
-                    "}";
-
-            OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
-            out.write(data);
-
-            out.close();
-            outputJson = convertStreamToString(conn.getInputStream());
-            System.out.print(outputJson);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return outputJson;
-    }
 
     @PostMapping("ppob/checkstatus")
     public String checkstatus(@RequestParam Map<String, String> body) {
@@ -250,7 +205,7 @@ public class MobilepulsaController {
             out.write(data);
 
             out.close();
-            outputJson = convertStreamToString(conn.getInputStream());
+            outputJson = utils.convertStreamToString(conn.getInputStream());
             System.out.print(outputJson);
 
         } catch (Exception e) {
@@ -296,7 +251,7 @@ public class MobilepulsaController {
             out.write(data);
 
             out.close();
-            outputJson = convertStreamToString(conn.getInputStream());
+            outputJson = utils.convertStreamToString(conn.getInputStream());
             System.out.print(outputJson);
 
         } catch (Exception e) {
@@ -359,7 +314,7 @@ public class MobilepulsaController {
             out.write(data);
 
             out.close();
-            outputJson = convertStreamToString(conn.getInputStream());
+            outputJson = utils.convertStreamToString(conn.getInputStream());
             System.out.print(data);
 
         } catch (Exception e) {
@@ -402,9 +357,6 @@ public class MobilepulsaController {
         return jsonObject;
     }
 
-    private static String convertStreamToString(InputStream is) {
-        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
-        return s.hasNext() ? s.next() : "";
-    }
+
 
 }
