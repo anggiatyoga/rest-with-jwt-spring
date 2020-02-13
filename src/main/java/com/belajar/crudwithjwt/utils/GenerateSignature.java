@@ -1,4 +1,4 @@
-package com.belajar.crudwithjwt.controller.briva;
+package com.belajar.crudwithjwt.utils;
 
 //import jdk.internal.org.jline.reader.LineReader;
 
