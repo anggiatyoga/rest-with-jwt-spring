@@ -18,8 +18,7 @@ public interface RegisterUserRepository extends JpaRepository<RegisterUser, Inte
 
     RegisterUser findByEmail(String email);
 
-    Optional<RegisterUser> findByUsernameOrNumberphoneOrEmail(String textOne, String textTwo, String textThree);
-
+    Optional<RegisterUser> findByUsernameOrNumberphoneOrEmailOrFullname(String textOne, String textTwo, String textThree, String textFour);
 
     @Query(value = "select numberphone from user_info where username = 'sincan'", nativeQuery = true)
     public List<Object[]> findNumberphone();

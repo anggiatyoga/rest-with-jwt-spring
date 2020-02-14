@@ -46,7 +46,7 @@ public class BiodataController {
 
         if (biodataList.isPresent()) {
             message = "pencarian ditemukan";
-            status = "301(Found)";
+            status = "301";
 
             map.put("data", new HashMap<String, Object>() {
                 {
@@ -65,7 +65,7 @@ public class BiodataController {
             map.put("message", message);
         } else {
             message = "pencarian tidak ditemukan";
-            status = "404(Not Found)";
+            status = "404";
 
             map.put("data", "tidak ditemukan");
             map.put("status", status);
@@ -89,7 +89,7 @@ public class BiodataController {
 
         if (biodataList.isPresent()) {
             message = "pencarian ditemukan";
-            status = "301(Found)";
+            status = "301";
 
             map.put("data", new HashMap<String, Object>() {
                 {
@@ -108,7 +108,7 @@ public class BiodataController {
             map.put("message", message);
         } else {
             message = "pencarian tidak ditemukan";
-            status = "404(Not Found)";
+            status = "404";
 
             map.put("data", "tidak ditemukan");
             map.put("status", status);
@@ -138,17 +138,39 @@ public class BiodataController {
             System.out.println("not a number");
         }
 
+        System.out.println("nik                => "+nik+"\n"+
+                "nama               => "+nama+"\n"+
+                "tempatTanggallahir => "+tempatTanggallahir+"\n"+
+                "jenisKelamin       => "+jenisKelamin+"\n"+
+                "alamat             => "+alamat+"\n"+
+                "agama              => "+agama+"\n"+
+                "statusPerkawinan   => "+statusPerkawinan+"\n"+
+                "pekerjaan          => "+pekerjaan+"\n"+
+                "kewarganegaraan    => "+kewarganegaraan+"\n"
+        );
+
         String status;
         String message;
 
-        if (biodataRepository.existsById(nikNya)) {
-            message = "NIK telah digunakan";
-            status = "400(Bad Request)";
+        if ((nama.isEmpty()) && (tempatTanggallahir.isEmpty()) && (jenisKelamin.isEmpty()) && (alamat.isEmpty()) &&
+                (agama.isEmpty()) && (statusPerkawinan.isEmpty()) && (pekerjaan.isEmpty()) &&
+                (kewarganegaraan.isEmpty())){
+
+            message = "please fill in the registration field";
+            status = "400";
+
         } else {
-            biodataRepository.save(new Biodata(nikNya, nama, tempatTanggallahir, jenisKelamin, alamat, agama,
-                    statusPerkawinan, pekerjaan, kewarganegaraan));
-            message = "Berhasil dibuat";
-            status = "201(Created)";
+
+            if (biodataRepository.existsById(nikNya)) {
+                message = "NIK telah digunakan";
+                status = "400";
+            } else {
+                biodataRepository.save(new Biodata(nikNya, nama, tempatTanggallahir, jenisKelamin, alamat, agama,
+                        statusPerkawinan, pekerjaan, kewarganegaraan));
+                message = "Berhasil dibuat";
+                status = "201";
+            }
+
         }
 
         Map<String, Object> map = new HashMap<>();
@@ -168,6 +190,8 @@ public class BiodataController {
         });
         map.put("status", status);
         map.put("message", message);
+
+
 
         return map;
     }
@@ -196,6 +220,7 @@ public class BiodataController {
             biodata.setStatus_perkawinan(body.get("statusPerkawinan"));
             biodata.setPekerjaan(body.get("pekerjaan"));
             biodata.setKewarganegaraan(body.get("kewarganegaraan"));
+
             biodataRepository.save(biodata);
             long finalNikNya = nikNya;
             map.put("data", new HashMap<String, String>(){
@@ -211,11 +236,11 @@ public class BiodataController {
                     put("kewarganegaraan", body.get("kewarganegaraan"));
                 }
             });
-            map.put("status", "201(Created)");
+            map.put("status", "201");
             map.put("message", "Berhasil diubah");
         } else {
             map.put("data", null);
-            map.put("status", "404(Not Found)");
+            map.put("status", "404");
             map.put("message", nikNya+" tidak terdaftar");
         }
 
@@ -237,7 +262,7 @@ public class BiodataController {
         long finalNikNya = nikNya;
 
         map.put("data",null);
-        map.put("status", "201(Created)");
+        map.put("status", "201");
         map.put("message", finalNikNya+" berhasil dihapus");
 
         Biodata biodata = biodataRepository.findById(nikNya).orElseThrow(() -> new ValidationException(""+finalNikNya+" tidak ditemukan", "404(Not Found)", null));
@@ -287,7 +312,7 @@ public class BiodataController {
                 }
             }
         });
-        map.put("status", "200(Ok)");
+        map.put("status", "200");
         map.put("message","Succses");
 
         return map;

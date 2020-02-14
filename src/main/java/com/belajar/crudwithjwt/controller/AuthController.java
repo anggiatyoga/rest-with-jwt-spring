@@ -51,7 +51,7 @@ public class AuthController {
         String status;
 
         String searchUsername = body.get("username");
-        Optional<RegisterUser> registerUserList = registerUserRepository.findByUsernameOrNumberphoneOrEmail(searchUsername, searchUsername, searchUsername);
+        Optional<RegisterUser> registerUserList = registerUserRepository.findByUsernameOrNumberphoneOrEmailOrFullname(searchUsername, searchUsername, searchUsername, searchUsername);
 
         if (registerUserList.isPresent()) {
             String dataUsername = registerUserList.get().getUsername();
@@ -68,12 +68,12 @@ public class AuthController {
                 authenticate.setToken(token);
                 authenticateRepository.save(authenticate);
                 message = "berhasil login";
-                status = "200(Ok)";
+                status = "200";
             } else {
                 //save
                 authenticateRepository.save(new Authenticate(dataUsername, token));
                 message = "berhasil login";
-                status = "202(Accepted)";
+                status = "202";
             }
 
             map.put("data", new HashMap<String, Object>() {
@@ -82,13 +82,14 @@ public class AuthController {
                     put("email",registerUserList.get().getEmail());
                     put("number_phone",registerUserList.get().getNumberphone());
                     put("token", token);
+                    put("fullname", registerUserList.get().getFullname());
                 }
             });
             map.put("status", status);
             map.put("message", message);
         } else {
             map.put("message","account tidak ditemukan");
-            map.put("status","404(Not Found)");
+            map.put("status","404");
             map.put("data",null);
         }
 
@@ -100,9 +101,9 @@ public class AuthController {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         }catch (DisabledException e) {
-            throw new ValidationException(""+e+"","401(Unauthorised)","data "+e);
+            throw new ValidationException(""+e+"","401","data "+e);
         } catch (BadCredentialsException e) {
-            throw new ValidationException("username atau password salah!","401(Unauthorised)",null);
+            throw new ValidationException("username atau password salah!","401",null);
         }
 
     }

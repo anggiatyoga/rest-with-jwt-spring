@@ -14,15 +14,17 @@ public class RegisterUser {
     private String password;
     private String email;
     private String numberphone;
+    private String fullname;
 
     public RegisterUser() {
     }
 
-    public RegisterUser(String username, String password, String email, String numberphone) {
+    public RegisterUser(String username, String password, String email, String numberphone, String fullname) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.numberphone = numberphone;
+        this.fullname = fullname;
     }
 
     public int getId() {
@@ -63,5 +65,13 @@ public class RegisterUser {
 
     public void setNumberphone(String numberphone) {
         this.numberphone = numberphone;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 }
