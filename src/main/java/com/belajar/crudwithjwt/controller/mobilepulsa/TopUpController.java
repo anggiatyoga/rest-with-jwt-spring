@@ -22,6 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.belajar.crudwithjwt.utils.Utils.convertStreamToString;
+
 @RestController
 public class TopUpController {
 
@@ -31,8 +33,6 @@ public class TopUpController {
     public TopUpController(TransactionRepository transactionRepository) {
         this.transactionRepository = transactionRepository;
     }
-
-    Utils utils = new Utils();
 
     @PostMapping("ppob/topup")
     public String topup(@RequestParam Map<String, String> body) {
@@ -75,11 +75,9 @@ public class TopUpController {
             out.write(data);
 
             out.close();
-            outputJson = Utils.convertStreamToString(conn.getInputStream());
+            outputJson = convertStreamToString(conn.getInputStream());
 
             System.out.println(outputJson);
-
-
 
             try {
                 final JSONObject jsonObject = new JSONObject(outputJson);

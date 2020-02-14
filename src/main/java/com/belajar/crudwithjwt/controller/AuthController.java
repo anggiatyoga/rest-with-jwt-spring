@@ -44,15 +44,7 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-//    public Map<String, Object> createAuthenticationToken(@RequestParam JwtRequest authenticationRequest) throws Exception {
     public Map<String, Object> createAuthenticationToken(@RequestParam Map<String, String> body) throws Exception {
-//        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
-
-//        final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
-//        final String token = jwtToken.generateToken(userDetails);
-//        String dataUsername = authenticationRequest.getUsername();
-//        String dataPassword = authenticationRequest.getPassword();
-
         Map<String, Object> map = new HashMap<>();
 
         String message;
@@ -99,9 +91,6 @@ public class AuthController {
             map.put("status","404(Not Found)");
             map.put("data",null);
         }
-
-//        String dataUsername = body.get("username");
-
 
         return map;
     }

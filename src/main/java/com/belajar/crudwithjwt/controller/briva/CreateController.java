@@ -10,10 +10,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
+import static com.belajar.crudwithjwt.utils.Utils.convertStreamToString;
+
 @RestController
 public class CreateController {
-
-    Utils utils = new Utils();
 
     //Autowired
     //Repository
@@ -63,7 +63,7 @@ public class CreateController {
             out.write(data);
 
             out.close();
-            outputJson = utils.convertStreamToString(conn.getInputStream());
+            outputJson = convertStreamToString(conn.getInputStream());
 
         } catch (Exception e){
             e.printStackTrace();

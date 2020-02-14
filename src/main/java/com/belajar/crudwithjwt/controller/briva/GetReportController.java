@@ -9,6 +9,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
+import static com.belajar.crudwithjwt.utils.Utils.convertStreamToString;
+
 @RestController
 public class GetReportController {
 
@@ -16,7 +18,6 @@ public class GetReportController {
     //Repository
 
     //constructor untuk controller
-    Utils utils = new Utils();
 
     @PostMapping("/briva/getreport")
     public String getReport(@RequestParam Map<String, String> body) {
@@ -43,7 +44,7 @@ public class GetReportController {
             conn.setDoOutput(true);
             conn.setRequestMethod("GET");
 
-            outputJson = utils.convertStreamToString(conn.getInputStream());
+            outputJson = convertStreamToString(conn.getInputStream());
 
         } catch (Exception e){
             e.printStackTrace();

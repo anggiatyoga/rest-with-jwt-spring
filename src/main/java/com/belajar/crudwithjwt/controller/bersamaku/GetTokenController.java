@@ -1,6 +1,7 @@
 package com.belajar.crudwithjwt.controller.bersamaku;
 
 import com.belajar.crudwithjwt.repository.bersamaku.GetTokenRepository;
+import com.belajar.crudwithjwt.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,8 @@ public class GetTokenController {
 
     final
     private GetTokenRepository getTokenRepository;
+
+    Utils utils = new Utils();
 
     public GetTokenController(GetTokenRepository getTokenRepository) {
         this.getTokenRepository = getTokenRepository;
@@ -38,7 +41,7 @@ public class GetTokenController {
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");
 
-            outputJson = convertStreamToString(conn.getInputStream());
+            outputJson = Utils.convertStreamToString(conn.getInputStream());
             System.out.println(outputJson);
 
 
@@ -50,9 +53,6 @@ public class GetTokenController {
         return outputJson;
     }
 
-    private static String convertStreamToString(InputStream is) {
-        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
-        return s.hasNext() ? s.next() : "";
-    }
+
 
 }

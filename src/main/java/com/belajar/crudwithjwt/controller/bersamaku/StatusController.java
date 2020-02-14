@@ -1,6 +1,7 @@
 package com.belajar.crudwithjwt.controller.bersamaku;
 
 import com.belajar.crudwithjwt.repository.bersamaku.StatusRepository;
+import com.belajar.crudwithjwt.utils.Utils;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,8 @@ public class StatusController {
 
     final
     private StatusRepository statusRepository;
+
+    Utils utils = new Utils();
 
     public StatusController(StatusRepository statusRepository) {
         this.statusRepository = statusRepository;
@@ -40,7 +43,7 @@ public class StatusController {
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");
 
-            outputJson = convertStreamToString(conn.getInputStream());
+            outputJson = Utils.convertStreamToString(conn.getInputStream());
             System.out.println(outputJson);
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,9 +52,5 @@ public class StatusController {
         return outputJson;
     }
 
-    private static String convertStreamToString(InputStream is) {
-        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
-        return s.hasNext() ? s.next() : "";
-    }
 
 }

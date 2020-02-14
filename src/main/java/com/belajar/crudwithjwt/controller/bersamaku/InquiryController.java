@@ -1,6 +1,7 @@
 package com.belajar.crudwithjwt.controller.bersamaku;
 
 import com.belajar.crudwithjwt.repository.bersamaku.InquiryRepository;
+import com.belajar.crudwithjwt.utils.Utils;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,8 @@ public class InquiryController {
 
     final
     private InquiryRepository inquiryRepository;
+
+    Utils utils = new Utils();
 
     public InquiryController(InquiryRepository inquiryRepository) {
         this.inquiryRepository = inquiryRepository;
@@ -40,18 +43,13 @@ public class InquiryController {
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");
 
-            outputJson = convertStreamToString(conn.getInputStream());
+            outputJson = Utils.convertStreamToString(conn.getInputStream());
             System.out.println(outputJson);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return outputJson;
-    }
-
-    private static String convertStreamToString(InputStream is) {
-        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
-        return s.hasNext() ? s.next() : "";
     }
 
 }

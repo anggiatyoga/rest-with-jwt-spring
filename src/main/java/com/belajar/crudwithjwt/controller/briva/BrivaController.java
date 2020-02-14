@@ -1,26 +1,27 @@
 package com.belajar.crudwithjwt.controller.briva;
 
-import com.belajar.crudwithjwt.repository.briva.BrivaRepository;
+import com.belajar.crudwithjwt.repository.briva.CreateRepository;
 import com.belajar.crudwithjwt.utils.GenerateSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
+import static com.belajar.crudwithjwt.utils.Utils.convertStreamToString;
+
 @RestController
 public class BrivaController {
 
     @Autowired
-    private BrivaRepository brivaRepository;
+    private CreateRepository createRepository;
 
-    public BrivaController(BrivaRepository brivaRepository) {
-        this.brivaRepository = brivaRepository;
+    public BrivaController(CreateRepository createRepository) {
+        this.createRepository = createRepository;
     }
 
 //    @PostMapping("/briva/create")
@@ -89,10 +90,6 @@ public class BrivaController {
 
     };
 
-    public static String convertStreamToString(InputStream is) {
-        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
-        return s.hasNext() ? s.next() : "";
-    }
 
 
 }

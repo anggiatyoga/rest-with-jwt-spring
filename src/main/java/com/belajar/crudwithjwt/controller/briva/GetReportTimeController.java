@@ -9,14 +9,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
+import static com.belajar.crudwithjwt.utils.Utils.convertStreamToString;
+
 @RestController
-public class GetReportTime {
+public class GetReportTimeController {
 
     //Autowired
     //Repository
 
     //constructor untuk controller
-    Utils utils = new Utils();
 
     @PostMapping("/briva/getreporttime")
     public String getReport(@RequestParam Map<String, String> body) {
@@ -47,7 +48,7 @@ public class GetReportTime {
             conn.setDoOutput(true);
             conn.setRequestMethod("GET");
 
-            outputJson = utils.convertStreamToString(conn.getInputStream());
+            outputJson = convertStreamToString(conn.getInputStream());
 
         } catch (Exception e){
             e.printStackTrace();

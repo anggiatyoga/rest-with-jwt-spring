@@ -1,6 +1,7 @@
 package com.belajar.crudwithjwt.controller.bersamaku;
 
 import com.belajar.crudwithjwt.repository.bersamaku.TransferRepository;
+import com.belajar.crudwithjwt.utils.Utils;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,8 @@ public class TransferController {
 
     final
     private TransferRepository transferRepository;
+
+    Utils utils = new Utils();
 
     public TransferController(TransferRepository transferRepository) {
         this.transferRepository = transferRepository;
@@ -67,7 +70,7 @@ public class TransferController {
             conn.setRequestMethod("POST");
 
 
-            outputJson = convertStreamToString(conn.getInputStream());
+            outputJson = Utils.convertStreamToString(conn.getInputStream());
             System.out.println("RefTrx : "+refTrx);
             System.out.println(outputJson);
         } catch (Exception e) {
@@ -75,11 +78,6 @@ public class TransferController {
         }
 
         return outputJson;
-    }
-
-    private static String convertStreamToString(InputStream is) {
-        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
-        return s.hasNext() ? s.next() : "";
     }
 
 }

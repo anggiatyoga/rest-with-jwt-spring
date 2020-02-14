@@ -10,14 +10,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
+import static com.belajar.crudwithjwt.utils.Utils.convertStreamToString;
+
 @RestController
-public class Delete {
+public class DeleteController {
 
     //Autowired
     //Repository
 
     //constructor untuk controller
-    Utils utils = new Utils();
 
     @PostMapping("/briva/delete")
     public String delete(@RequestParam Map<String, String> body) {
@@ -50,7 +51,7 @@ public class Delete {
             out.write(data);
 
             out.close();
-            outputJson = utils.convertStreamToString(conn.getInputStream());
+            outputJson = convertStreamToString(conn.getInputStream());
 
         } catch (Exception e){
             e.printStackTrace();

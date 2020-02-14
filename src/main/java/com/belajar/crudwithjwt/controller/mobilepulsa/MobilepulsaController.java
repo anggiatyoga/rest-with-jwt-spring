@@ -19,6 +19,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.belajar.crudwithjwt.utils.Utils.convertStreamToString;
+
 @RestController
 public class MobilepulsaController {
 
@@ -28,8 +30,6 @@ public class MobilepulsaController {
     public MobilepulsaController(MobilepulsaRepository mobilepulsaRepository) {
         this.mobilepulsaRepository = mobilepulsaRepository;
     }
-
-    Utils utils = new Utils();
 
     @PostMapping("/ppob/checkbalance")
     public String checkbalance(@RequestParam Map<String, String> body) {
@@ -66,7 +66,7 @@ public class MobilepulsaController {
 
             out.close();
 
-            outputJson = utils.convertStreamToString(conn.getInputStream());
+            outputJson = convertStreamToString(conn.getInputStream());
 
             System.out.print(outputJson);
 
@@ -110,7 +110,7 @@ public class MobilepulsaController {
             out.write(data);
 
             out.close();
-            outputJson = utils.convertStreamToString(conn.getInputStream());
+            outputJson = convertStreamToString(conn.getInputStream());
 
             System.out.print(outputJson);
 
@@ -158,7 +158,7 @@ public class MobilepulsaController {
 
             out.close();
 
-            outputJson = utils.convertStreamToString(conn.getInputStream());
+            outputJson = convertStreamToString(conn.getInputStream());
 
             System.out.print(outputJson);
 
@@ -205,7 +205,7 @@ public class MobilepulsaController {
             out.write(data);
 
             out.close();
-            outputJson = utils.convertStreamToString(conn.getInputStream());
+            outputJson = convertStreamToString(conn.getInputStream());
             System.out.print(outputJson);
 
         } catch (Exception e) {
@@ -251,7 +251,7 @@ public class MobilepulsaController {
             out.write(data);
 
             out.close();
-            outputJson = utils.convertStreamToString(conn.getInputStream());
+            outputJson = convertStreamToString(conn.getInputStream());
             System.out.print(outputJson);
 
         } catch (Exception e) {
@@ -314,7 +314,7 @@ public class MobilepulsaController {
             out.write(data);
 
             out.close();
-            outputJson = utils.convertStreamToString(conn.getInputStream());
+            outputJson = convertStreamToString(conn.getInputStream());
             System.out.print(data);
 
         } catch (Exception e) {
@@ -322,41 +322,6 @@ public class MobilepulsaController {
         }
         return outputJson;
     }
-
-    @GetMapping("/test/hello")
-    public Map<String, Object> sayHello() {
-        Map<String, Object> map = new HashMap<>();
-        map.put("data", new HashMap<Integer, Object>(){
-            {
-                for (int i=0; i<3; i++){
-                    put(i, new HashMap<Integer, Object>(){
-                        {
-                            for (int j=0; j<3; j++){
-                             put(j, "j ke + "+j);
-                            }
-                        }
-                    });
-                }
-            }
-        });
-        map.put("status", "200(Ok)");
-        map.put("message","Succses");
-
-        return map;
-    }
-
-
-
-    private JSONObject stringToJson(String str) {
-        JSONObject jsonObject = new JSONObject(str);
-        try {
-            jsonObject = new JSONObject(str);
-        } catch (JSONException err) {
-            System.out.println("CATCH JSONException ERROR!");
-        }
-        return jsonObject;
-    }
-
 
 
 }
