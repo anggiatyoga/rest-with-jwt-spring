@@ -52,7 +52,6 @@ public class RegisterUserController {
             map.put("status", status);
             map.put("message", message);
         }
-
         return map;
     }
 
@@ -77,7 +76,7 @@ public class RegisterUserController {
                                 } else if (j == 1) {
                                     put("email", registerUserList.get(finalI).getEmail());
                                 } else if (j == 2) {
-                                    put("numberphone", registerUserList.get(finalI).getPassword());
+                                    put("numberphone", registerUserList.get(finalI).getNumberphone());
                                 } else if (j == 3) {
                                     put("fullname", registerUserList.get(finalI).getFullname());
                                 }
