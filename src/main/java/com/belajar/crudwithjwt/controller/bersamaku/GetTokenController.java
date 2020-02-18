@@ -44,7 +44,6 @@ public class GetTokenController {
             outputJson = Utils.convertStreamToString(conn.getInputStream());
             System.out.println(outputJson);
 
-
         } catch (Exception e) {
             e.printStackTrace();
         }

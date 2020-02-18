@@ -158,7 +158,7 @@ public class DataModel {
         this.name = name;
     }
 
-    // company.member.banks.code
+//     company.member.banks.code
 //    public DataModel(String bank_code, String bank_name){
 //        this.bank_code = bank_code;
 //        this.bank_name = bank_name;

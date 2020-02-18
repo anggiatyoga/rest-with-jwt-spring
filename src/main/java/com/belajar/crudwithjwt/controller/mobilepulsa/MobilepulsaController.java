@@ -252,7 +252,7 @@ public class MobilepulsaController {
 
             out.close();
             outputJson = convertStreamToString(conn.getInputStream());
-            System.out.print(outputJson);
+            System.out.print(data);
 
         } catch (Exception e) {
             e.printStackTrace();

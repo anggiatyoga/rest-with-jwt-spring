@@ -120,7 +120,7 @@ public class BusinessBankingController {
             conn.setRequestProperty("X-BCA-Timestamp", timeStamp);
             conn.setRequestProperty("X-BCA-Signature", signature);
             conn.setDoOutput(true);
-            conn.setRequestMethod("GET");
+            conn.setRequestMethod("POST");
 
             String data = "{" +
                     "\"CorporateID\" : \""+corporateID+"," +
