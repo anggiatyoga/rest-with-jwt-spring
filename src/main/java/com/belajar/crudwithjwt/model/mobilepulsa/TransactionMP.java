@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "transaction")
-public class Transaction {
+public class TransactionMP {
 
     @Id
     private long ref_id;
@@ -20,10 +20,10 @@ public class Transaction {
     private long tr_id;
     private String rc;
 
-    public Transaction() {
+    public TransactionMP() {
     }
 
-    public Transaction(long ref_id, int status, String code, String hp, long price, String message, long balance, long tr_id, String rc) {
+    public TransactionMP(long ref_id, int status, String code, String hp, long price, String message, long balance, long tr_id, String rc) {
         this.ref_id = ref_id;
         this.status = status;
         this.code = code;

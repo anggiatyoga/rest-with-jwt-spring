@@ -1,7 +1,11 @@
 package com.belajar.crudwithjwt.controller.bersamaku;
 
+import com.belajar.crudwithjwt.model.bersamaku.Transfer;
 import com.belajar.crudwithjwt.repository.bersamaku.TransferRepository;
 import com.belajar.crudwithjwt.utils.Utils;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +21,7 @@ import java.util.Map;
 @RestController
 public class TransferController {
 
-    final
+    @Autowired
     private TransferRepository transferRepository;
 
     Utils utils = new Utils();
@@ -71,8 +75,39 @@ public class TransferController {
 
 
             outputJson = Utils.convertStreamToString(conn.getInputStream());
-            System.out.println("RefTrx : "+refTrx);
             System.out.println(outputJson);
+
+            try {
+
+                final JSONObject jsonObject = new JSONObject(outputJson);
+                final JSONObject jsonArray_tr_ID = jsonObject.getJSONObject("transaction_ID");
+
+                String stan = jsonArray_tr_ID.getString("stan");
+                String inst_ID = jsonArray_tr_ID.getString("inst_ID");
+                String trans_Date_Time = jsonArray_tr_ID.getString("trans_Date_Time");
+                String ref_code = jsonObject.getJSONObject("ref").getString("code");
+                final JSONObject jsonArray_source = jsonObject.getJSONObject("source");
+                String source_amount = jsonArray_source.getString("amount");
+                String source_currency = jsonArray_source.getString("currency");
+                String source_country_code = jsonArray_source.getString("country_Code");
+
+                final JSONObject jsonArray_destination = jsonObject.getJSONObject("destination");
+                String destination_amount = jsonArray_destination.getString("amount");
+                String destination_currency = jsonArray_destination.getString("currency");
+                String destination_country_code = jsonArray_destination.getString("country_Code");
+
+                String timestamp_response = jsonObject.getString("timestamp_response");
+                String siganture = jsonObject.getString("Signature");
+
+                transferRepository.save(new Transfer(stan, inst_ID, trans_Date_Time, ref_code, source_amount,
+                        source_currency, source_country_code, destination_amount, destination_currency,
+                        destination_country_code, timestamp_response, siganture));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

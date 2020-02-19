@@ -1,10 +1,9 @@
 package com.belajar.crudwithjwt.repository.mobilepulsa;
 
-import com.belajar.crudwithjwt.model.mobilepulsa.Payment;
+import com.belajar.crudwithjwt.model.mobilepulsa.TransactionMP;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PaymentRepository extends JpaRepository<Payment, Long> {
-
+public interface TransactionMPRepository extends JpaRepository<TransactionMP, Long> {
 }

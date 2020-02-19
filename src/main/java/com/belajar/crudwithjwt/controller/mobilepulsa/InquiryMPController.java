@@ -1,7 +1,7 @@
 package com.belajar.crudwithjwt.controller.mobilepulsa;
 
-import com.belajar.crudwithjwt.model.mobilepulsa.Inquiry;
-import com.belajar.crudwithjwt.repository.mobilepulsa.InquiryRepository;
+import com.belajar.crudwithjwt.model.mobilepulsa.InquiryMP;
+import com.belajar.crudwithjwt.repository.mobilepulsa.InquiryMPRepository;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +19,13 @@ import java.util.Map;
 import static com.belajar.crudwithjwt.utils.Utils.convertStreamToString;
 
 @RestController
-public class InquiryController {
+public class InquiryMPController {
 
     @Autowired
-    private InquiryRepository inquiryRepository;
+    private InquiryMPRepository inquiryMPRepository;
 
-    public InquiryController(InquiryRepository inquiryRepository) {
-        this.inquiryRepository = inquiryRepository;
+    public InquiryMPController(InquiryMPRepository inquiryMPRepository) {
+        this.inquiryMPRepository = inquiryMPRepository;
     }
 
     @PostMapping("ppob/inquiry")
@@ -99,7 +99,7 @@ public class InquiryController {
                 String Response_ref_id = jsonArray.getString("ref_id");
                 long Response_selling_price = jsonArray.getLong("selling_price");
 
-                inquiryRepository.save(new Inquiry(Response_tr_id, Response_code, Response_hp, Response_tr_name,
+                inquiryMPRepository.save(new InquiryMP(Response_tr_id, Response_code, Response_hp, Response_tr_name,
                         Response_period, Response_nominal, Response_admin, Response_ref_id, Response_selling_price));
 
             } catch (JSONException e) {

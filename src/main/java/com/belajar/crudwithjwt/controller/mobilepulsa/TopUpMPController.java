@@ -1,8 +1,7 @@
 package com.belajar.crudwithjwt.controller.mobilepulsa;
 
-import com.belajar.crudwithjwt.model.mobilepulsa.Transaction;
-import com.belajar.crudwithjwt.repository.mobilepulsa.TransactionRepository;
-import com.belajar.crudwithjwt.utils.Utils;
+import com.belajar.crudwithjwt.model.mobilepulsa.TransactionMP;
+import com.belajar.crudwithjwt.repository.mobilepulsa.TransactionMPRepository;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +24,17 @@ import java.util.Map;
 import static com.belajar.crudwithjwt.utils.Utils.convertStreamToString;
 
 @RestController
-public class TopUpController {
+public class TopUpMPController {
 
     @Autowired
-    private TransactionRepository transactionRepository;
+    private TransactionMPRepository transactionMPRepository;
 
-    public TopUpController(TransactionRepository transactionRepository) {
-        this.transactionRepository = transactionRepository;
+    public TopUpMPController(TransactionMPRepository transactionMPRepository) {
+        this.transactionMPRepository = transactionMPRepository;
     }
 
     @PostMapping("ppob/topup")
-    public String topup(@RequestParam Map<String, String> body) {
+    public String topupMP(@RequestParam Map<String, String> body) {
         String hpCustomer = body.get("hp");
         String pulsaCode = body.get("pulsa_code");
         String outputJson = "";
@@ -93,14 +92,14 @@ public class TopUpController {
                 long tr_id = jsonArray.getLong("tr_id");
                 String rc = jsonArray.getString("rc");
 
-                transactionRepository.save(new Transaction(Long.parseLong(ref_id), status, code, hp, price,
+                transactionMPRepository.save(new TransactionMP(Long.parseLong(ref_id), status, code, hp, price,
                         message, balance, tr_id, rc));
 
             } catch (JSONException e){
                 e.printStackTrace();
             }
 
-            transactionRepository.save(new Transaction());
+            transactionMPRepository.save(new TransactionMP());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -109,10 +108,10 @@ public class TopUpController {
     }
 
     @GetMapping("ppob/topup/show")
-    public Map<String, Object> showAllList() {
-        List<Transaction> transactionList = transactionRepository.findAll();
+    public Map<String, Object> showAllListMP() {
+        List<TransactionMP> transactionMPList = transactionMPRepository.findAll();
 
-        int batasList = transactionList.size();
+        int batasList = transactionMPList.size();
 
         Map<String, Object> map = new HashMap<>();
         map.put("data", new HashMap<Integer, Object>(){
@@ -124,23 +123,23 @@ public class TopUpController {
                         {
                             for (int j=0; j<9; j++){
                                 if (j == 0){
-                                    put("ref_id", transactionList.get(finalI).getRef_id());
+                                    put("ref_id", transactionMPList.get(finalI).getRef_id());
                                 } else if (j == 1) {
-                                    put("status", transactionList.get(finalI).getStatus());
+                                    put("status", transactionMPList.get(finalI).getStatus());
                                 } else if (j == 2) {
-                                    put("code", transactionList.get(finalI).getCode());
+                                    put("code", transactionMPList.get(finalI).getCode());
                                 } else if (j == 3) {
-                                    put("hp", transactionList.get(finalI).getHp());
+                                    put("hp", transactionMPList.get(finalI).getHp());
                                 } else if (j == 4) {
-                                    put("price", transactionList.get(finalI).getPrice());
+                                    put("price", transactionMPList.get(finalI).getPrice());
                                 } else if (j == 5) {
-                                    put("message", transactionList.get(finalI).getMessage());
+                                    put("message", transactionMPList.get(finalI).getMessage());
                                 } else if (j == 6) {
-                                    put("balance", transactionList.get(finalI).getBalance());
+                                    put("balance", transactionMPList.get(finalI).getBalance());
                                 } else if (j == 7) {
-                                    put("tr_id", transactionList.get(finalI).getTr_id());
+                                    put("tr_id", transactionMPList.get(finalI).getTr_id());
                                 } else if (j == 8) {
-                                    put("rc", transactionList.get(finalI).getRc());
+                                    put("rc", transactionMPList.get(finalI).getRc());
                                 }
                             }
                         }

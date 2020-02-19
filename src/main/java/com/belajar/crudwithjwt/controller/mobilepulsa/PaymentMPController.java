@@ -1,7 +1,7 @@
 package com.belajar.crudwithjwt.controller.mobilepulsa;
 
-import com.belajar.crudwithjwt.model.mobilepulsa.Payment;
-import com.belajar.crudwithjwt.repository.mobilepulsa.PaymentRepository;
+import com.belajar.crudwithjwt.model.mobilepulsa.PaymentMP;
+import com.belajar.crudwithjwt.repository.mobilepulsa.PaymentMPRepository;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,13 +18,13 @@ import java.util.Map;
 import static com.belajar.crudwithjwt.utils.Utils.convertStreamToString;
 
 @RestController
-public class PaymentController {
+public class PaymentMPController {
 
     @Autowired
-    private PaymentRepository paymentRepository;
+    private PaymentMPRepository paymentMPRepository;
 
-    public PaymentController(PaymentRepository paymentRepository) {
-        this.paymentRepository = paymentRepository;
+    public PaymentMPController(PaymentMPRepository paymentMPRepository) {
+        this.paymentMPRepository = paymentMPRepository;
     }
 
     @PostMapping("ppob/payment")
@@ -83,7 +83,7 @@ public class PaymentController {
                 String noref = jsonArray.getString("noref");;
                 String ref_id = jsonArray.getString("ref_id");
 
-                paymentRepository.save(new Payment(tr_id, code, datetime, hp, tr_name, period, nominal
+                paymentMPRepository.save(new PaymentMP(tr_id, code, datetime, hp, tr_name, period, nominal
                 ,admin, message, selling_price, noref, ref_id));
 
             } catch (Exception e){

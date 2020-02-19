@@ -5,34 +5,40 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "inquiry")
-public class Inquiry {
+@Table(name = "payment")
+public class PaymentMP {
 
     @Id
     private long tr_id;
 
     private String code;
+    private String datetime;
     private String hp;
     private String tr_name;
     private String period;
     private long nominal;
-    private int admin;
-    private String ref_id;
+    private long admin;
+    private String message;
     private long selling_price;
+    private String noref;
+    private String ref_id;
 
-    public Inquiry() {
+    public PaymentMP() {
     }
 
-    public Inquiry(long tr_id, String code, String hp, String tr_name, String period, long nominal, int admin, String ref_id, long selling_price) {
+    public PaymentMP(long tr_id, String code, String datetime, String hp, String tr_name, String period, long nominal, long admin, String message, long selling_price, String noref, String ref_id) {
         this.tr_id = tr_id;
         this.code = code;
+        this.datetime = datetime;
         this.hp = hp;
         this.tr_name = tr_name;
         this.period = period;
         this.nominal = nominal;
         this.admin = admin;
-        this.ref_id = ref_id;
+        this.message = message;
         this.selling_price = selling_price;
+        this.noref = noref;
+        this.ref_id = ref_id;
     }
 
     public long getTr_id() {
@@ -49,6 +55,14 @@ public class Inquiry {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
     }
 
     public String getHp() {
@@ -83,20 +97,20 @@ public class Inquiry {
         this.nominal = nominal;
     }
 
-    public int getAdmin() {
+    public long getAdmin() {
         return admin;
     }
 
-    public void setAdmin(int admin) {
+    public void setAdmin(long admin) {
         this.admin = admin;
     }
 
-    public String getRef_id() {
-        return ref_id;
+    public String getMessage() {
+        return message;
     }
 
-    public void setRef_id(String ref_id) {
-        this.ref_id = ref_id;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public long getSelling_price() {
@@ -105,5 +119,21 @@ public class Inquiry {
 
     public void setSelling_price(long selling_price) {
         this.selling_price = selling_price;
+    }
+
+    public String getNoref() {
+        return noref;
+    }
+
+    public void setNoref(String noref) {
+        this.noref = noref;
+    }
+
+    public String getRef_id() {
+        return ref_id;
+    }
+
+    public void setRef_id(String ref_id) {
+        this.ref_id = ref_id;
     }
 }
