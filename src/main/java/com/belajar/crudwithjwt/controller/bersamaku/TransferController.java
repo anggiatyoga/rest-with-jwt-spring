@@ -30,7 +30,7 @@ public class TransferController {
         this.transferRepository = transferRepository;
     }
 
-    @PostMapping("bersamaku/bku/v1/outboundAcc/transfer")
+    @PostMapping("bersamaku/transfer")
     public String transfer(@RequestParam Map<String, String> body) {
 
         String refTrx = body.get("refTrx");

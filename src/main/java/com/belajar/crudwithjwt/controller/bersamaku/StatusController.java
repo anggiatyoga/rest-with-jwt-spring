@@ -25,7 +25,7 @@ public class StatusController {
         this.statusRepository = statusRepository;
     }
 
-    @PostMapping("bersamaku/bku/v1/outboundAcc/status")
+    @PostMapping("bersamaku/status")
     public String status(@RequestParam Map<String, String> body) {
         String transactionId = body.get("transaction_ID");
         String query = body.get("query");

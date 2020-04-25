@@ -1,5 +1,8 @@
 package com.belajar.crudwithjwt.controller.mynt;
 
+import com.belajar.crudwithjwt.model.mynt.CompanyBanksAccountModel;
+import com.belajar.crudwithjwt.repository.mynt.company.CompanyBanksAccountRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,12 +17,19 @@ import java.util.Map;
 
 public class CompanyResponse {
 
+//    @Autowired
+//    private CompanyBanksAccountRepository companyBanksAccountRepository;
+//
+//    public CompanyResponse(CompanyBanksAccountRepository companyBanksAccountRepository) {
+//        this.companyBanksAccountRepository = companyBanksAccountRepository;
+//    }
+
     public static String convertStreamToString(InputStream is) {
         java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
         return s.hasNext() ? s.next() : "";
     }
 
-    Map<String, Object> companyLogin(){
+    public Map<String, Object> companyLogin(){
 
         Map<String, Object> map = new HashMap<>();
 

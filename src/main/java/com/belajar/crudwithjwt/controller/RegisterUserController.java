@@ -32,7 +32,7 @@ public class RegisterUserController {
 
         if (registerUserList.isPresent()){
             message = "pencarian ditemukan";
-            status = "301(Found)";
+            status = "301";
 
             map.put("data", new HashMap<String, Object>() {
                 {
@@ -46,7 +46,7 @@ public class RegisterUserController {
             map.put("message", message);
         } else {
             message = "pencarian tidak ditemukan";
-            status = "404(Not Found)";
+            status = "404";
 
             map.put("data", "tidak ditemukan");
             map.put("status", status);
@@ -86,7 +86,7 @@ public class RegisterUserController {
                 }
             }
         });
-        map.put("status", "200(Ok)");
+        map.put("status", "200");
         map.put("message","Succses");
 
         return map;

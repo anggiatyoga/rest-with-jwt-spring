@@ -1,6 +1,5 @@
 package com.belajar.crudwithjwt.model.mynt;
 
-import javax.persistence.Entity;
 import java.util.ArrayList;
 
 //@Entity
@@ -85,7 +84,7 @@ public class DataModel {
     private String token;
     private String token_trx;
     private String total_transactions;
-    private ArrayList<Transactions> transactions;
+    private ArrayList<CompanyTransactionsInquiryModel> transactions;
     private String trace_id;
     private String username;
     private String service_code;
@@ -262,7 +261,7 @@ public class DataModel {
     }
 
     // company.member.transactions.history.success || company.member.transactions.history.progress
-    public DataModel(String page, String page_total, ArrayList<Transactions> transactions) {
+    public DataModel(String page, String page_total, ArrayList<CompanyTransactionsInquiryModel> transactions) {
         this.page = page;
         this.page_total = page_total;
         this.transactions = transactions;

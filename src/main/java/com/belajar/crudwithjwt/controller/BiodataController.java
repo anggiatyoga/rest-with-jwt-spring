@@ -284,7 +284,7 @@ public class BiodataController {
 
                 for (int i=0; i<batasList; i++){
                     int finalI = i;
-                    put(i, new HashMap<String, Object>(){
+                    put(    i, new HashMap<String, Object>(){
                         {
                             for (int j=0; j<9; j++){
                                 if (j == 0){
