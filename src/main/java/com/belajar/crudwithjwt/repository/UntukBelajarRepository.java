@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface UntukBelajarRepository extends JpaRepository<UntukBelajar, Integer> {
     Optional<UntukBelajar> findByName(String name);
     Boolean existsByName(String name);
+    Boolean existsById(int id);
 }

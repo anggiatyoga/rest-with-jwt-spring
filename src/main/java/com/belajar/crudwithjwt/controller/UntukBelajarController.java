@@ -64,18 +64,19 @@ public class UntukBelajarController {
 
         UntukBelajar untukBelajar = untukBelajarRepository.findByName(searchName).orElseThrow(()
         -> new ValidationException(""+searchName+" not found", "404", null));
+        untukBelajarRepository.delete(untukBelajar);
         return map;
     }
 
     //update
     @PostMapping("/untukbelajar/update")
     public Map<String, Object> update(@RequestBody Map<String, String> body) {
-        String searchName = body.get("name");
+        int id = Integer.parseInt(body.get("id"));
 
         Map<String, Object> map = new HashMap<>();
 
-        if (untukBelajarRepository.existsByName(searchName)) {
-            UntukBelajar untukBelajar = untukBelajarRepository.findByName(searchName).orElse(new UntukBelajar());
+        if (untukBelajarRepository.existsById(id)) {
+            UntukBelajar untukBelajar = untukBelajarRepository.findById(id).orElse(new UntukBelajar());
             untukBelajar.setName(body.get("name"));
             untukBelajar.setEmail(body.get("email"));
             untukBelajar.setAge(Integer.parseInt(body.get("age")));
@@ -84,7 +85,7 @@ public class UntukBelajarController {
             map.put("message", "update success");
             map.put("status", "200");
         } else {
-            map.put("message", "update failed "+searchName+" not found");
+            map.put("message", "update failed "+id+" not found");
             map.put("status", "404");
         }
         return map;
