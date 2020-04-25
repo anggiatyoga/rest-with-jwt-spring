@@ -4,10 +4,7 @@ import com.belajar.crudwithjwt.exceptions.ValidationException;
 import com.belajar.crudwithjwt.model.UntukBelajar;
 import com.belajar.crudwithjwt.repository.UntukBelajarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +28,7 @@ public class UntukBelajarController {
 
     //create
     @PostMapping("/untukbelajar/create")
-    public Map<String, Object> create(@RequestParam Map<String, String> body) {
+    public Map<String, Object> create(@RequestBody Map<String, String> body) {
 
         String name = body.get("name");
         String email = body.get("email");
@@ -58,7 +55,7 @@ public class UntukBelajarController {
 
     //delete
     @PostMapping("/untukbelajar/delete")
-    public Map<String, Object> delete(@RequestParam Map<String, String> body) {
+    public Map<String, Object> delete(@RequestBody Map<String, String> body) {
         String searchName = body.get("name");
         Map<String, Object> map = new HashMap<>();
 
@@ -72,7 +69,7 @@ public class UntukBelajarController {
 
     //update
     @PostMapping("/untukbelajar/update")
-    public Map<String, Object> update(@RequestParam Map<String, String> body) {
+    public Map<String, Object> update(@RequestBody Map<String, String> body) {
         String searchName = body.get("name");
 
         Map<String, Object> map = new HashMap<>();
