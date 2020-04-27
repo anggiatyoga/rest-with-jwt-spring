@@ -56,12 +56,17 @@ public class UntukBelajarController {
 
     //read by id
     @PostMapping("/untukbelajar/showprofile")
-    public Map<String, Object> showprofile(@RequestParam Map<String, String> body) {
+    public Map<String, Object> showprofile(@RequestBody Map<String, String> body) {
         String searchId = body.get("id");
-        int idNya = Integer.parseInt(searchId);
+        int idNya = 0;
+        System.out.println();
+        try {
+            idNya = Integer.parseInt(searchId);
+            System.out.println("berhasilllllllllll");
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
 
-        String status;
-        String message;
         Optional<UntukBelajar> dataProfile = untukBelajarRepository.findById(idNya);
 
 
