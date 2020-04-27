@@ -58,7 +58,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
                 .authorizeRequests()
                 .antMatchers("/authenticate", "/register/create", "mynt/company",
-                        "/untukbelajar/showall", "/untukbelajar/create", "/untukbelajar/delete", "/untukbelajar/update")
+                        "/untukbelajar/showall", "/untukbelajar/create", "/untukbelajar/delete", "/untukbelajar/update",
+                        "/untukbelajar/showprofile")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
