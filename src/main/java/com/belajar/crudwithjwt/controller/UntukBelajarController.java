@@ -55,7 +55,7 @@ public class UntukBelajarController {
     }
 
     //read by id
-    @PostMapping("untukbelajar/showprofile")
+    @PostMapping("/untukbelajar/showprofile")
     public Map<String, Object> showprofile(@RequestParam Map<String, String> body) {
         String searchId = body.get("id");
         int idNya = Integer.parseInt(searchId);
@@ -63,6 +63,7 @@ public class UntukBelajarController {
         String status;
         String message;
         Optional<UntukBelajar> dataProfile = untukBelajarRepository.findById(idNya);
+
 
         Map<String, Object> map = new HashMap<>();
 
