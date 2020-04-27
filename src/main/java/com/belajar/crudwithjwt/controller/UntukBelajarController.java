@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 public class UntukBelajarController {
@@ -51,6 +52,32 @@ public class UntukBelajarController {
         map.put("status", status);
 
         return map;
+    }
+
+    //read by id
+    @PostMapping("untukbelajar/showprofile")
+    public Map<String, Object> showprofile(@RequestParam Map<String, String> body) {
+        String searchId = body.get("id");
+        int idNya = Integer.parseInt(searchId);
+
+        String status;
+        String message;
+        Optional<UntukBelajar> dataProfile = untukBelajarRepository.findById(idNya);
+
+        Map<String, Object> map = new HashMap<>();
+
+        if (dataProfile.isPresent()) {
+            map.put("id", dataProfile.get().getId());
+            map.put("name", dataProfile.get().getName());
+            map.put("email", dataProfile.get().getEmail());
+            map.put("age", dataProfile.get().getAge());
+        } else {
+            map.put("message", searchId+" not found");
+            map.put("status", "404");
+        }
+
+        return map;
+
     }
 
     //delete
